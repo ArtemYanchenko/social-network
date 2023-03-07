@@ -11,6 +11,15 @@
 }
 
 
+.app-wrapper-content {
+    grid-area: content;
+    background-color: yellow;
+}
+
+.app-wrapper-content img {
+    width: 100%;
+}
+
 
 
 
