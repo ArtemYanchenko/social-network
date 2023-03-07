@@ -1,5 +1,12 @@
 .item {
-    color: white;
+    color: black;
+    vertical-align: middle;
+}
+
+.item p {
+    display: inline-block;
+    margin-left: 10px;
+
 }
 
 .avatar {
