@@ -4,11 +4,11 @@ import classes from './Navbar.module.css';
 const Navbar = () => {
     return (
         <nav className={classes.nav}>
-            <div><a href="src/Components/Navbar/Navbar#">Profile</a></div>
-            <div><a href="src/Components/Navbar/Navbar#">Messages</a></div>
-            <div><a href="src/Components/Navbar/Navbar#">News</a></div>
-            <div><a href="src/Components/Navbar/Navbar#">Music</a></div>
-            <div><a href="src/Components/Navbar/Navbar#">Settings</a></div>
+            <div><a href="/profile">Profile</a></div>
+            <div><a href="/dialogs">Messages</a></div>
+            <div><a href="/news">News</a></div>
+            <div><a href="/music">Music</a></div>
+            <div><a href="/settings">Settings</a></div>
         </nav>
     );
 };
