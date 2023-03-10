@@ -1,4 +1,24 @@
 .nav {
     grid-area: nav;
     background-color: greenyellow;
+    padding:10px;
 }
+
+.nav div {
+    margin-bottom: 3px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    /*margin-bottom: 30px;*/
+}
+
+.nav a:hover {
+    color:yellow;
+}
+
+a .active {
+    color: black;
+}
+

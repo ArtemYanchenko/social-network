@@ -4,7 +4,7 @@ import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
 import Profile from './Components/Profile/Profile';
 import Dialogs from './Components/Dialogs/Dialogs';
-import {BrowserRouter, Route, Router, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 
@@ -17,18 +17,12 @@ function App() {
                     <Header/>
                     <Navbar/>
                     <div className="app-wrapper-content">
-                        {/*<Profile />*/}
-                        {/*<Dialogs/>*/}
-
-                        {/*<Router>*/}
                             <Routes>
                                 <Route path={'/profile'} element={<Profile/>}/>
                                 <Route path={'/dialogs'} element={<Dialogs/>}/>
                                 <Route path={'/news'} element={<News/>}/>
                                 <Route path={'/music'} element={<Music/>}/>
                             </Routes>
-                        {/*</Router>*/}
-
                     </div>
 
                 </div>
