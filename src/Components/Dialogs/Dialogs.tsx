@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 type DialogItemPropsType = {
     name: string,
-    id: string
+    id: number
 }
 
 type MessageItemPropsType = {
@@ -29,20 +29,32 @@ const MessageItem = (props:MessageItemPropsType) => {
 }
 
 const Dialogs = () => {
+
+    let dialogsData = [
+        {id:1,name:'Artem'},
+        {id:2,name:'Fedor'},
+        {id:3,name:'Petya'},
+        {id:4,name:'Ivan'},
+        {id:5,name:'Nikola'},
+    ]
+
+    let messageData = [
+        {id:1,message:'hi'},
+        {id:2,message:'yo'},
+        {id:3,message:'how are you?'},
+        {id:4,message:'fine'},
+    ]
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialog}>
-                <DialogItem name="Artem" id="1"/>
-                <DialogItem name="Fedor" id="2"/>
-                <DialogItem name="Petya" id="3"/>
-                <DialogItem name="Ivan" id="4"/>
-                <DialogItem name="Nikola" id="5"/>
+                {dialogsData.map((d)=>
+                    <DialogItem name={d.name} id={d.id}/>
+                )}
             </div>
 
             <div className={classes.messages}>
-                <MessageItem message='hi'/>
-                <MessageItem message='yo'/>
-                <MessageItem message='how are you?'/>
+                {messageData.map( (m)=> <MessageItem message={m.message}/>  )}
             </div>
         </div>
     );
