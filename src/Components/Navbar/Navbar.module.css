@@ -1,7 +1,7 @@
 .nav {
     grid-area: nav;
-    background-color: greenyellow;
-    padding:10px;
+
+    padding: 10px;
 }
 
 .nav div {
@@ -10,15 +10,30 @@
 
 .nav a {
     text-decoration: none;
-    color: white;
+    color: black;
     /*margin-bottom: 30px;*/
 }
 
-.nav a:hover {
-    color:yellow;
+.navLink {
+    display: flex;
+    align-items: center;
 }
 
-a .active {
-    color: black;
+.navLink div {
+    display: inline-block;
+    padding-top:5px;
 }
 
+.navLink svg {
+    margin-right: 10px;
+
+}
+
+.navLink a {
+
+}
+
+.navLink:hover {
+    cursor: pointer;
+    background-color: #e8e4ec;
+}
