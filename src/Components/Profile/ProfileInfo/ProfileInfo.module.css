@@ -1,6 +1,17 @@
-.mainImg {
-    width: 100%;
+.profileInfoBlock{
+    width:fit-content;
+    background-color: white;
     border-radius: 12px;
+    padding: 20px 0px;
+    margin-bottom: 40px;
+}
+.mainImg {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 12px;
+
 }
 
 .descriptionBlock {
