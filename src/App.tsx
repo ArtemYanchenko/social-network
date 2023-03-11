@@ -7,9 +7,10 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
+import {AppPropsType} from './index';
 
 
-function App() {
+function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="App">
@@ -17,12 +18,12 @@ function App() {
                     <Header/>
                     <Navbar/>
                     <div className="app-wrapper-content">
-                            <Routes>
-                                <Route path={'/profile'} element={<Profile/>}/>
-                                <Route path={'/dialogs'} element={<Dialogs/>}/>
-                                <Route path={'/news'} element={<News/>}/>
-                                <Route path={'/music'} element={<Music/>}/>
-                            </Routes>
+                        <Routes>
+                            <Route path={'/profile'} element={<Profile postsData={props.postsData}/>}/>
+                            <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsData} messageData={props.messageData}/>}/>
+                            <Route path={'/news'} element={<News/>}/>
+                            <Route path={'/music'} element={<Music/>}/>
+                        </Routes>
                     </div>
 
                 </div>

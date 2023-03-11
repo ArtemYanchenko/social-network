@@ -8,10 +8,14 @@
     display: flex;
 }
 
+.header a {
+    margin-right: 14%;
+}
+
 .header img {
     width: 40px;
     border-radius: 10px;
-    margin-right: 14%;
+
     display: inline-block;
 }
 
