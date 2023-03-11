@@ -6,7 +6,6 @@ import {ProfilePageType} from '../../redux/state';
 
 
 const Profile = (props:ProfilePageType) => {
-    debugger;
     return (
         <div className={classes.content}>
             <ProfileInfo/>

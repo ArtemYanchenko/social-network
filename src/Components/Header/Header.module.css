@@ -6,6 +6,7 @@
     padding: 10px;
     height: 40px;
     display: flex;
+    box-shadow: 0px 8px 9px -6px rgba(34, 60, 80, 0.07);
 }
 
 .header a {
