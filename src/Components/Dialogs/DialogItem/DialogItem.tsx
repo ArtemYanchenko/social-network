@@ -5,14 +5,15 @@ import {NavLink} from 'react-router-dom';
 type DialogItemType = {
     id: number
     name: string
-
+    img:string
 }
 
 const DialogItem = (props: DialogItemType) => {
     return (
         <div className={classes.dialogItem}>
             <NavLink to={'/dialogs/' + props.id}>
-                {props.name}
+                <img src={props.img} alt=""/>
+                <p>{props.name}</p>
             </NavLink>
         </div>
     );

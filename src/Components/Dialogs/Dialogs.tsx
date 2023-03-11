@@ -8,7 +8,7 @@ import Message from './Message/Message';
 
 const Dialogs = (props: AppPropsType) => {
 
-    const dialogsElements = props.dialogsData?.map((d) => <DialogItem name={d.name} id={d.id}/>)
+    const dialogsElements = props.dialogsData?.map((d) => <DialogItem name={d.name} id={d.id} img={d.img}/>)
     const messagesElements = props.messageData?.map((m) => <Message message={m.message}/>)
 
     return (
