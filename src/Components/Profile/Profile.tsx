@@ -2,9 +2,11 @@ import React from 'react';
 import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {AppPropsType} from '../../index';
+import {ProfilePageType} from '../../redux/state';
 
-const Profile = (props:AppPropsType) => {
+
+const Profile = (props:ProfilePageType) => {
+    debugger;
     return (
         <div className={classes.content}>
             <ProfileInfo/>
