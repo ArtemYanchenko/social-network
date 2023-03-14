@@ -10,7 +10,8 @@ import Music from './Components/Music/Music';
 import {StateType} from './redux/state';
 
 type StatePropsType = {
-    state: StateType
+    state: StateType,
+    addPost:(titlePost:string)=>void
 }
 
 function App(props: StatePropsType) {
@@ -22,7 +23,7 @@ function App(props: StatePropsType) {
                     <Navbar/>
                     <div className="app-wrapper-content">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile postsData={props.state.profilePage.postsData}/>}/>
+                            <Route path={'/profile'} element={<Profile postsData={props.state.profilePage} addPost={props.addPost}/>}/>
                             <Route path={'/dialogs'} element={<Dialogs dialogsData={props.state.dialogsPage.dialogsData} messageData={props.state.dialogsPage.messageData}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>

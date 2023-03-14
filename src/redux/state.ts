@@ -14,7 +14,7 @@ export type MessageDataType = {
 }
 
 export type ProfilePageType = {
-    postsData: PostsDataType[],
+    postsData: PostsDataType[]
 }
 
 export type DialogsPageType = {
@@ -65,6 +65,11 @@ let state: StateType = {
             {id: 4, message: 'fine'},
         ]
     }
+}
+
+export const addPost = (titlePost:string) => {
+    let newPost = {id: 1, likesCount: 5, message: 'hi, my first post'};
+    state.profilePage.postsData.push(newPost)
 }
 
 export default state;
