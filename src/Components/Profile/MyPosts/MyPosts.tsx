@@ -9,22 +9,25 @@ const MyPosts = (props: ProfilePropsType) => {
 
     const [titlePost, setTitlePost] = useState('')
 
-    const onClickButtonHandler = () =>
+    const onClickButtonHandler = () => {
         props.addPost(titlePost);
+        setTitlePost('');
+    }
 
-    const onChangeInputHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+
+    const onChangeInputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTitlePost(e.currentTarget.value)
     }
     console.log(titlePost)
-        return (
-            <div className={classes.postsBlock}>
-                <h3> my posts </h3>
-                <textarea value={titlePost} onChange={onChangeInputHandler}></textarea>
-                <button onClick={onClickButtonHandler}>add post</button>
-                {props.postsData.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)}
-            </div>
+    return (
+        <div className={classes.postsBlock}>
+            <h3> my posts </h3>
+            <textarea value={titlePost} onChange={onChangeInputHandler}></textarea>
+            <button onClick={onClickButtonHandler}>add post</button>
+            {props.postsData.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)}
+        </div>
 
-        );
-    };
+    );
+};
 
-    export default MyPosts;
+export default MyPosts;

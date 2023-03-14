@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 export type PostsDataType = {
     id: number,
     likesCount: number,
@@ -68,8 +70,9 @@ let state: StateType = {
 }
 
 export const addPost = (titlePost:string) => {
-    let newPost = {id: 1, likesCount: 5, message: 'hi, my first post'};
-    state.profilePage.postsData.push(newPost)
+    let newPost = {id: 1, likesCount: 0, message: titlePost};
+    state.profilePage.postsData.push(newPost);
+    console.log('addPost')
 }
 
 export default state;
