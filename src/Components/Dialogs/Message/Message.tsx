@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './../Dialogs.module.css';
+import {Simulate} from 'react-dom/test-utils';
+import input = Simulate.input;
 
 
 type MessageItemPropsType = {
@@ -8,9 +10,10 @@ type MessageItemPropsType = {
 
 const Message = (props: MessageItemPropsType) => {
     return (
-        <div className={classes.message}>
-            {props.message}
-        </div>
+            <div className={classes.message}>
+                {props.message}
+            </div>
+
     )
         ;
 };

@@ -27,7 +27,7 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
- let state:StateType = {
+let state: StateType = {
     profilePage: {
         postsData: [
             {id: 1, likesCount: 5, message: 'hi, my first post'},
