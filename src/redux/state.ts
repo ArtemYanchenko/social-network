@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {rerenderEntireTree} from '../render';
 
 export type PostsDataType = {
     id: number,
@@ -16,6 +16,7 @@ export type MessageDataType = {
 }
 
 export type ProfilePageType = {
+    messageForNewPost:string
     postsData: PostsDataType[]
 }
 
@@ -31,6 +32,7 @@ export type StateType = {
 
 let state: StateType = {
     profilePage: {
+        messageForNewPost:'',
         postsData: [
             {id: 1, likesCount: 5, message: 'hi, my first post'},
             {id: 2, likesCount: 10, message: 'i am fine'},
@@ -69,10 +71,15 @@ let state: StateType = {
     }
 }
 
-export const addPost = (titlePost:string) => {
-    let newPost = {id: 1, likesCount: 0, message: titlePost};
-    state.profilePage.postsData.push(newPost);
-    console.log('addPost')
+export const addPost = (titlePost: string) => {
+    let newPost:PostsDataType = {id: 1, likesCount: 0, message: titlePost};
+    state.profilePage.postsData.unshift(newPost);
+    rerenderEntireTree(state);
+}
+
+export const changeTitleTextArea = (newTitle:string) => {
+    state.profilePage.messageForNewPost = newTitle;
+    rerenderEntireTree(state);
 }
 
 export default state;

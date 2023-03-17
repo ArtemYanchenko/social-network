@@ -7,22 +7,19 @@ import {ProfilePropsType} from '../Profile';
 
 const MyPosts = (props: ProfilePropsType) => {
 
-    const [titlePost, setTitlePost] = useState('')
 
     const onClickButtonHandler = () => {
-        props.addPost(titlePost);
-        setTitlePost('');
+        props.addPost(props.postsData.messageForNewPost);
     }
 
-
-    const onChangeInputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setTitlePost(e.currentTarget.value)
+    const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeTitleTextArea(e.currentTarget.value);
     }
-    console.log(titlePost)
+
     return (
         <div className={classes.postsBlock}>
             <h3> my posts </h3>
-            <textarea value={titlePost} onChange={onChangeInputHandler}></textarea>
+            <textarea value={props.postsData.messageForNewPost} onChange={onChangeTextAreaHandler}/>
             <button onClick={onClickButtonHandler}>add post</button>
             {props.postsData.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)}
         </div>
