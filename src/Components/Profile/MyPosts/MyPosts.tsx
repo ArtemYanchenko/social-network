@@ -18,7 +18,7 @@ const MyPosts = (props: ProfilePropsType) => {
 
     return (
         <div className={classes.postsBlock}>
-            <h3> my posts </h3>
+            <h3> My Posts </h3>
             <textarea value={props.postsData.messageForNewPost} onChange={onChangeTextAreaHandler}/>
             <button onClick={addPost}>add post</button>
             {props.postsData.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)}

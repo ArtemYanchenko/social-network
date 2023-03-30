@@ -7,10 +7,10 @@ import {ActionsTypes, ProfilePageType} from '../../redux/state';
 
 export type ProfilePropsType = {
     postsData: ProfilePageType
-    dispatch:(action:ActionsTypes)=>void
+    dispatch: (action: ActionsTypes) => void
 }
 
-const Profile = (props:ProfilePropsType) => {
+const Profile = (props: ProfilePropsType) => {
     debugger;
     return (
         <div className={classes.content}>

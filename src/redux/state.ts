@@ -25,7 +25,6 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
-
 export type RootStateType = {
     _state: StateType
     getState: () => StateType
@@ -36,10 +35,8 @@ export type RootStateType = {
     subscribe: (observer: () => void) => void
 }
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostNextAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostNextAC>
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
 
 export const store: RootStateType = {
     _state: {
@@ -104,10 +101,7 @@ export const store: RootStateType = {
     },
 }
 
-
-
-
-export const addPostAC = (messageForNewPost:string) => {
+export const addPostAC = (messageForNewPost: string) => {
     return {
         type: 'ADD-POST',
         messageForNewPost
