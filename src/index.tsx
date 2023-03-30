@@ -13,7 +13,7 @@ export let rerenderEntireTree = () => {
     );
     root.render(
         <BrowserRouter>
-            <App state={store.getState()} addPost={store.addPost.bind(store)} changeTitleTextArea={store.changeTitleTextArea.bind(store)}/>
+            <App store={store}/>
         </BrowserRouter>
     );
 }

@@ -37,7 +37,7 @@ export type RootStateType = {
     subscribe:(observer: () => void)=>void
 }
 
-export let store:RootStateType = {
+export const store:RootStateType = {
     _state: {
         profilePage: {
             messageForNewPost: '',
