@@ -36,17 +36,10 @@ export type RootStateType = {
     subscribe: (observer: () => void) => void
 }
 
-type AddPostAT = {
-    type: 'ADD-POST'
-    postText:string
-}
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostNextAC>
 
-type UpdateNewPostTextAT = {
-    type:'UPDATE-NEW-POST-TEXT'
-    newText:string
-}
-
-type ActionsTypes = AddPostAT | UpdateNewPostTextAT
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
 
 export const store: RootStateType = {
     _state: {
@@ -98,7 +91,7 @@ export const store: RootStateType = {
     dispatch(action) {
         switch (action.type) {
             case 'ADD-POST':
-                let newPost: PostsDataType = {id: 1, likesCount: 0, message: action.postText};
+                let newPost: PostsDataType = {id: 1, likesCount: 0, message: action.messageForNewPost};
                 this._state.profilePage.postsData.unshift(newPost);
                 return this._callSubscriber();
             case 'UPDATE-NEW-POST-TEXT':
@@ -109,7 +102,22 @@ export const store: RootStateType = {
     subscribe(observer: () => void) {
         this._callSubscriber = observer;
     },
+}
 
 
+
+
+export const addPostAC = (messageForNewPost:string) => {
+    return {
+        type: 'ADD-POST',
+        messageForNewPost
+    } as const
+}
+
+export const updateNewPostNextAC = (newText: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText
+    } as const
 }
 
