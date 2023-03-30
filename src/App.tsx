@@ -7,7 +7,7 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
-import {changeTitleTextArea, StateType} from './redux/state';
+import {StateType} from './redux/state';
 
 export type StatePropsType = {
     state: StateType,

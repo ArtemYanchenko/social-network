@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {changeTitleTextArea, ProfilePageType} from '../../redux/state';
+import {ProfilePageType} from '../../redux/state';
 
 
 export type ProfilePropsType = {
@@ -12,6 +12,7 @@ export type ProfilePropsType = {
 }
 
 const Profile = (props:ProfilePropsType) => {
+    debugger;
     return (
         <div className={classes.content}>
             <ProfileInfo/>

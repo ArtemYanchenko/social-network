@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePageType} from '../../../redux/state';
 import {ProfilePropsType} from '../Profile';
 
 
