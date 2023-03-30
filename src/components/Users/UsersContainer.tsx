@@ -75,26 +75,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
-//     return {
-//         followUser:followUserAC,
-//         // followUser: (id: number, checked: boolean) => {
-//         //     dispatch(followUserAC(id, checked))
-//         // },
-//         setUsers: (users: UsersType[]) => {
-//             dispatch(setUsersAC(users));
-//         },
-//         toggleUsersPage: (currentPage:number) => {
-//             dispatch(toggleUsersPageAC(currentPage))
-//         },
-//         setTotalCount:(totalCount:number)=>{
-//             dispatch(setTotalCountAC(totalCount))
-//         },
-//         toggleFetching:(checked:boolean)=>{
-//             dispatch(toggleFetchingAC(checked))
-//         }
-//     }
-// }
-
-
 export default connect(mapStateToProps, {followUser, setUsers, toggleUsersPage, setTotalCount, toggleFetching})(UsersAPI)
