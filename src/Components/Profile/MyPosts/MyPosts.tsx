@@ -4,6 +4,19 @@ import Post from './Post/Post';
 import {ProfilePropsType} from '../Profile';
 
 
+const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
+    }
+}
+
+const updateNewPostNextAC = (newText: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText
+    }
+}
+
 const MyPosts = (props: ProfilePropsType) => {
 
 

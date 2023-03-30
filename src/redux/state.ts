@@ -26,18 +26,29 @@ export type StateType = {
 }
 
 
-
-
 export type RootStateType = {
-    _state:StateType
-    getState:()=>StateType
-    _callSubscriber:()=>void
-    addPost:(postText:string)=>void
-    changeTitleTextArea:(newTitle: string)=>void
-    subscribe:(observer: () => void)=>void
+    _state: StateType
+    getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
+    _callSubscriber: () => void
+    // addPost: (postText: string) => void
+    // changeTitleTextArea: (newTitle: string) => void
+    subscribe: (observer: () => void) => void
 }
 
-export const store:RootStateType = {
+type AddPostAT = {
+    type: 'ADD-POST'
+    postText:string
+}
+
+type UpdateNewPostTextAT = {
+    type:'UPDATE-NEW-POST-TEXT'
+    newText:string
+}
+
+type ActionsTypes = AddPostAT | UpdateNewPostTextAT
+
+export const store: RootStateType = {
     _state: {
         profilePage: {
             messageForNewPost: '',
@@ -78,20 +89,22 @@ export const store:RootStateType = {
             ]
         }
     },
-    getState(){
-        return this._state;
-    },
     _callSubscriber() {
         console.log('state was changed')
     },
-    addPost(postText:string) {
-        let newPost: PostsDataType = {id: 1, likesCount: 0, message: postText};
-        this._state.profilePage.postsData.unshift(newPost);
-        this._callSubscriber();
+    getState() {
+        return this._state;
     },
-    changeTitleTextArea(newTitle: string) {
-        this._state.profilePage.messageForNewPost = newTitle;
-        this._callSubscriber();
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let newPost: PostsDataType = {id: 1, likesCount: 0, message: action.postText};
+                this._state.profilePage.postsData.unshift(newPost);
+                return this._callSubscriber();
+            case 'UPDATE-NEW-POST-TEXT':
+                this._state.profilePage.messageForNewPost = action.newText;
+                this._callSubscriber();
+        }
     },
     subscribe(observer: () => void) {
         this._callSubscriber = observer;
