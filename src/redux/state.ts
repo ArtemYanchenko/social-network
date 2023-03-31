@@ -89,19 +89,21 @@ export const store: RootStateType = {
     },
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
-                const newPost: PostsDataType = {id: 1, likesCount: 0, message: action.messageForNewPost};
-                this._state.profilePage.postsData.unshift(newPost);
-                return this._callSubscriber();
             case 'UPDATE-NEW-POST-TEXT':
                 this._state.profilePage.messageForNewPost = action.newText;
                 return this._callSubscriber();
-            case 'ADD-MESSAGE':
-                const newMessage:MessageDataType = {id:1,message:action.textMessage};
-                this._state.dialogsPage.messageData.push(newMessage);
+            case 'ADD-POST':
+                const newPost: PostsDataType = {id: 1, likesCount: 0, message: this._state.profilePage.messageForNewPost};
+                this._state.profilePage.postsData.unshift(newPost);
+                this._state.profilePage.messageForNewPost = '';
                 return this._callSubscriber();
             case 'UPDATE-NEW-MESSAGE-TEXT':
                 this._state.dialogsPage.textMessage = action.newTextMessage;
+                return this._callSubscriber();
+            case 'ADD-MESSAGE':
+                const newMessage:MessageDataType = {id:1,message: this._state.dialogsPage.textMessage};
+                this._state.dialogsPage.messageData.push(newMessage);
+                this._state.dialogsPage.textMessage = '';
                 return this._callSubscriber();
         }
     },
@@ -110,10 +112,9 @@ export const store: RootStateType = {
     },
 }
 
-export const addPostAC = (messageForNewPost: string) => {
+export const addPostAC = (messageForNewPost: string) =>  {
     return {
-        type: 'ADD-POST',
-        messageForNewPost
+        type: 'ADD-POST'
     } as const
 }
 
@@ -126,8 +127,7 @@ export const updateNewPostNextAC = (newText: string) => {
 
 export const addMessageAC = (textMessage:string) => {
     return {
-        type: 'ADD-MESSAGE',
-        textMessage
+        type: 'ADD-MESSAGE'
     } as const
 }
 

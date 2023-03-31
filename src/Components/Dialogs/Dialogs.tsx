@@ -18,7 +18,6 @@ const Dialogs = (props: PropsType) => {
 
     const onClickButtonHandler = () => {
         props.dispatch(addMessageAC(props.dialogsPageData.textMessage))
-        props.dispatch(updateMessageTextAC(''))
     }
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
