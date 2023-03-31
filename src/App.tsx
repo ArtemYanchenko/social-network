@@ -7,7 +7,7 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
-import {RootStateType, StateType} from './redux/state';
+import {RootStateType, StateType} from './redux/store';
 
 export type StatePropsType = {
     store: RootStateType,

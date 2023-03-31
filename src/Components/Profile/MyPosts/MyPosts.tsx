@@ -2,13 +2,15 @@ import React, {ChangeEvent, createRef, useState} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ProfilePropsType} from '../Profile';
-import {addPostAC, updateNewPostNextAC} from '../../../redux/state';
+import {addPostAC, updateNewPostNextAC} from '../../../redux/store';
 
 
 const MyPosts = (props: ProfilePropsType) => {
 
     const addPost = () => {
-        props.dispatch(addPostAC(props.postsData.messageForNewPost))
+        if (props.postsData.messageForNewPost) {
+            props.dispatch(addPostAC())
+        }
     }
 
     const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

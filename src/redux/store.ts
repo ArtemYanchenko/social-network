@@ -112,7 +112,7 @@ export const store: RootStateType = {
     },
 }
 
-export const addPostAC = (messageForNewPost: string) =>  {
+export const addPostAC = () =>  {
     return {
         type: 'ADD-POST'
     } as const

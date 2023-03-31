@@ -2,22 +2,25 @@ import React, {ChangeEvent, useState} from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {ActionsTypes, addMessageAC, DialogsPageType, updateMessageTextAC} from '../../redux/state';
+import {ActionsTypes, addMessageAC, DialogsPageType, updateMessageTextAC} from '../../redux/store';
 
 type PropsType = {
-    dialogsPageData:DialogsPageType
+    dialogsPageData: DialogsPageType
     dispatch: (action: ActionsTypes) => void
 }
 
 
 const Dialogs = (props: PropsType) => {
 
-    const dialogsElements = props.dialogsPageData.dialogsData.map((d) => <DialogItem name={d.name} id={d.id} img={d.img}/>)
+    const dialogsElements = props.dialogsPageData.dialogsData.map((d) => <DialogItem name={d.name} id={d.id}
+                                                                                     img={d.img}/>)
     const messagesElements = props.dialogsPageData.messageData.map((m) => <Message message={m.message}/>)
 
 
-    const onClickButtonHandler = () => {
-        props.dispatch(addMessageAC(props.dialogsPageData.textMessage))
+    const sendMessage = () => {
+        if (props.dialogsPageData.textMessage) {
+            props.dispatch(addMessageAC(props.dialogsPageData.textMessage))
+        }
     }
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +35,7 @@ const Dialogs = (props: PropsType) => {
             <div className={classes.messages}>
                 {messagesElements}
                 <input type="text" value={props.dialogsPageData.textMessage} onChange={onChangeInputHandler}/>
-                <button onClick={onClickButtonHandler}>+</button>
+                <button onClick={sendMessage}>+</button>
             </div>
 
         </div>
