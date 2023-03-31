@@ -18,7 +18,8 @@ export type ProfilePageType = {
 }
 export type DialogsPageType = {
     dialogsData: DialogsDataType[],
-    messageData: MessageDataType[]
+    messageData: MessageDataType[],
+    newMessageText:string
 }
 export type StateType = {
     profilePage: ProfilePageType,
@@ -76,7 +77,8 @@ export const store: RootStateType = {
                 {id: 2, message: 'yo'},
                 {id: 3, message: 'how are you?'},
                 {id: 4, message: 'fine'},
-            ]
+            ],
+            newMessageText: ''
         }
     },
     _callSubscriber() {

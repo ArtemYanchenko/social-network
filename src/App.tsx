@@ -27,7 +27,8 @@ function App(props: StatePropsType) {
                                element={<Profile postsData={state.profilePage}
                                                  dispatch={props.store.dispatch.bind(props.store)}/>}/>
                         <Route path={'/dialogs'} element={<Dialogs dialogsData={state.dialogsPage.dialogsData}
-                                                                   messageData={state.dialogsPage.messageData}/>}/>
+                                                                   messageData={state.dialogsPage.messageData}
+                                                                   newMessageText={state.dialogsPage.newMessageText}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                     </Routes>

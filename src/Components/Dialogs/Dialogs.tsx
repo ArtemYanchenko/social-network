@@ -6,17 +6,13 @@ import {DialogsPageType} from '../../redux/state';
 
 
 const Dialogs = (props: DialogsPageType) => {
-    const [titleMessage, setTitleMessage] = useState('')
 
     const dialogsElements = props.dialogsData.map((d) => <DialogItem name={d.name} id={d.id} img={d.img}/>)
     const messagesElements = props.messageData.map((m) => <Message message={m.message}/>)
     const onClickButtonHandler = () => {
-        console.log(titleMessage);
-        setTitleMessage('');
     }
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitleMessage(e.currentTarget.value)
     }
 
     return (
@@ -26,7 +22,7 @@ const Dialogs = (props: DialogsPageType) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <input type="text" value={titleMessage} onChange={onChangeInputHandler}/>
+                <input type="text" value={props.newMessageText} onChange={onChangeInputHandler}/>
                 <button onClick={onClickButtonHandler}>+</button>
             </div>
 
