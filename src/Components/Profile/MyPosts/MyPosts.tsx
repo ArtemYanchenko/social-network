@@ -10,7 +10,7 @@ const MyPosts = (props: ProfilePropsType) => {
 
     const addPost = () => {
         props.dispatch(addPostAC(props.postsData.messageForNewPost))
-        props.postsData.messageForNewPost = '';
+        props.dispatch(updateNewPostNextAC(''))
     }
 
     const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

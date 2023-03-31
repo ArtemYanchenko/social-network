@@ -19,7 +19,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogsData: DialogsDataType[],
     messageData: MessageDataType[],
-    newMessageText:string
+    textMessage:string
 }
 export type StateType = {
     profilePage: ProfilePageType,
@@ -36,7 +36,7 @@ export type RootStateType = {
     subscribe: (observer: () => void) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostNextAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostNextAC> | ReturnType<typeof addMessageAC> | ReturnType<typeof updateMessageTextAC>
 
 
 export const store: RootStateType = {
@@ -78,7 +78,7 @@ export const store: RootStateType = {
                 {id: 3, message: 'how are you?'},
                 {id: 4, message: 'fine'},
             ],
-            newMessageText: ''
+            textMessage: ''
         }
     },
     _callSubscriber() {
@@ -90,12 +90,19 @@ export const store: RootStateType = {
     dispatch(action) {
         switch (action.type) {
             case 'ADD-POST':
-                let newPost: PostsDataType = {id: 1, likesCount: 0, message: action.messageForNewPost};
+                const newPost: PostsDataType = {id: 1, likesCount: 0, message: action.messageForNewPost};
                 this._state.profilePage.postsData.unshift(newPost);
                 return this._callSubscriber();
             case 'UPDATE-NEW-POST-TEXT':
                 this._state.profilePage.messageForNewPost = action.newText;
-                this._callSubscriber();
+                return this._callSubscriber();
+            case 'ADD-MESSAGE':
+                const newMessage:MessageDataType = {id:1,message:action.textMessage};
+                this._state.dialogsPage.messageData.push(newMessage);
+                return this._callSubscriber();
+            case 'UPDATE-NEW-MESSAGE-TEXT':
+                this._state.dialogsPage.textMessage = action.newTextMessage;
+                return this._callSubscriber();
         }
     },
     subscribe(observer: () => void) {
@@ -114,6 +121,20 @@ export const updateNewPostNextAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText
+    } as const
+}
+
+export const addMessageAC = (textMessage:string) => {
+    return {
+        type: 'ADD-MESSAGE',
+        textMessage
+    } as const
+}
+
+export const updateMessageTextAC = (newTextMessage:string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newTextMessage
     } as const
 }
 
