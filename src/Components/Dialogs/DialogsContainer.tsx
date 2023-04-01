@@ -9,11 +9,11 @@ import Dialogs from './Dialogs';
 
 const DialogsContainer = (props: StatePropsType) => {
 
-    const state = props.store.getState()
+    const state = props.store.getState().dialogsPage
 
     const sendMessage = () => {
-        if (state.dialogsPage.textMessage) {
-            props.store.dispatch(addMessageAC(state.dialogsPage.textMessage))
+        if (state.textMessage) {
+            props.store.dispatch(addMessageAC(state.textMessage))
         }
     }
 
@@ -22,7 +22,7 @@ const DialogsContainer = (props: StatePropsType) => {
     }
     // state.dialogsPage
     return (
-            <Dialogs sendMessage={sendMessage} updateMessageText={updateMessageText} dialogsPage={state.dialogsPage}/>
+            <Dialogs sendMessage={sendMessage} updateMessageText={updateMessageText} dialogsPage={state}/>
     );
 };
 
