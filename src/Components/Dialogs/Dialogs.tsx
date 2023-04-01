@@ -6,26 +6,27 @@ import {ActionsTypes, DialogsPageType} from '../../redux/store';
 import {addMessageAC, updateMessageTextAC} from '../../redux/dialogs-reducer';
 
 type PropsType = {
-    dialogsPageData: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
+    sendMessage:()=>void
+    updateMessageText:(newText:string)=>void
+    dialogsPage:DialogsPageType
 }
+
+
 
 
 const Dialogs = (props: PropsType) => {
 
-    const dialogsElements = props.dialogsPageData.dialogsData.map((d) => <DialogItem name={d.name} id={d.id}
+    const dialogsElements = props.dialogsPage.dialogsData.map((d) => <DialogItem name={d.name} id={d.id}
                                                                                      img={d.img}/>)
-    const messagesElements = props.dialogsPageData.messageData.map((m) => <Message message={m.message}/>)
+    const messagesElements = props.dialogsPage.messageData.map((m) => <Message message={m.message}/>)
 
 
-    const sendMessage = () => {
-        if (props.dialogsPageData.textMessage) {
-            props.dispatch(addMessageAC(props.dialogsPageData.textMessage))
-        }
+    const sendMessageHandler = () => {
+      props.sendMessage();
     }
 
-    const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.dispatch(updateMessageTextAC(e.currentTarget.value))
+    const updateMessageTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.updateMessageText(e.currentTarget.value)
     }
 
     return (
@@ -35,8 +36,8 @@ const Dialogs = (props: PropsType) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <input type="text" value={props.dialogsPageData.textMessage} onChange={onChangeInputHandler}/>
-                <button onClick={sendMessage}>+</button>
+                <input type="text" value={props.dialogsPage.textMessage} onChange={updateMessageTextHandler}/>
+                <button onClick={sendMessageHandler}>+</button>
             </div>
 
         </div>

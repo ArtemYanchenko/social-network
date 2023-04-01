@@ -7,7 +7,7 @@ const ProfileInfo = () => {
         <div className={classes.profileInfoBlock}>
             <img
                 className={classes.mainImg}
-                src="https://img3.akspic.ru/crops/7/3/3/7/4/147337/147337-macbook-makbuk_ejr-voda-tkan-more-3840x2160.jpg"
+                src="https://klike.net/uploads/posts/2019-11/1572608904_9.jpg"
                 alt="photo"/>
             <div className={classes.descriptionBlock}>ava+desc</div>
         </div>
