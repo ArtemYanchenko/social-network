@@ -3,22 +3,16 @@ import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {ActionsTypes, ProfilePageType} from '../../redux/store';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
+import {StatePropsType} from '../../App';
 
 
-export type ProfilePropsType = {
-    postsData: ProfilePageType
-    dispatch: (action: ActionsTypes) => void
-}
 
-const Profile = (props: ProfilePropsType) => {
-    debugger;
+const Profile = (props: StatePropsType) => {
     return (
         <div className={classes.content}>
             <ProfileInfo/>
-            <MyPosts
-                postsData={props.postsData}
-                dispatch={props.dispatch}
-            />
+            <MyPostsContainer store={props.store}/>
         </div>
     );
 };

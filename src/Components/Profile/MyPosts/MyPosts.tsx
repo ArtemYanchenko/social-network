@@ -1,30 +1,36 @@
 import React, {ChangeEvent, createRef, useState} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePropsType} from '../Profile';
-import {addPostAC, updateNewPostNextAC} from '../../../redux/profile-reducer';
+import {PostsDataType} from '../../../redux/store';
 
 
-const MyPosts = (props: ProfilePropsType) => {
+type PropsType = {
+    addPost:()=>void
+    updatePostText:(newPostText:string)=>void
+    postsData:PostsDataType[]
+    messageForNewPost: string
+}
 
-    const addPost = () => {
-        if (props.postsData.messageForNewPost) {
-            props.dispatch(addPostAC())
-        }
+const MyPosts = (props: PropsType ) => {
+
+    const addPostHandler = () => {
+        props.addPost();
     }
 
-    const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostNextAC(e.currentTarget.value))
+    const updatePostTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updatePostText(e.currentTarget.value)
     }
+
+    const mappedPosts = props.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)
 
     return (
         <div className={classes.postsBlock}>
             <h3> My Posts </h3>
-            <textarea value={props.postsData.messageForNewPost}
-                      onChange={onChangeTextAreaHandler}
+            <textarea value={props.messageForNewPost}
+                      onChange={updatePostTextHandler}
             />
-            <button onClick={addPost}>add post</button>
-            {props.postsData.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)}
+            <button onClick={addPostHandler}>add post</button>
+            {mappedPosts}
         </div>
 
     );

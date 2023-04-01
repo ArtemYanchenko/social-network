@@ -4,11 +4,10 @@ import {dialogsReducer} from './dialogs-reducer';
 import {DialogsPageType, ProfilePageType} from './store';
 
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     profilePage:profileReducer,
     dialogsPage:dialogsReducer
 })
 
 
-export let store: Store<EmptyObject & { dialogsPage: DialogsPageType; profilePage: ProfilePageType }, AnyAction>;
-store = createStore(reducers);
+export const store: Store<EmptyObject & { dialogsPage: DialogsPageType; profilePage: ProfilePageType }, AnyAction> = createStore(reducers);
