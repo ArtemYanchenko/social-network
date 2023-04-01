@@ -1,3 +1,6 @@
+import {addPostAC, profileReducer, updateNewPostNextAC} from './profile-reducer';
+import {addMessageAC, dialogsReducer, updateMessageTextAC} from './dialogs-reducer';
+
 export type PostsDataType = {
     id: number,
     likesCount: number,
@@ -19,7 +22,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogsData: DialogsDataType[],
     messageData: MessageDataType[],
-    textMessage:string
+    textMessage: string
 }
 export type StateType = {
     profilePage: ProfilePageType,
@@ -36,7 +39,11 @@ export type RootStateType = {
     subscribe: (observer: () => void) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostNextAC> | ReturnType<typeof addMessageAC> | ReturnType<typeof updateMessageTextAC>
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostNextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateMessageTextAC>
 
 
 export const store: RootStateType = {
@@ -88,53 +95,11 @@ export const store: RootStateType = {
         return this._state;
     },
     dispatch(action) {
-        switch (action.type) {
-            case 'UPDATE-NEW-POST-TEXT':
-                this._state.profilePage.messageForNewPost = action.newText;
-                return this._callSubscriber();
-            case 'ADD-POST':
-                const newPost: PostsDataType = {id: 1, likesCount: 0, message: this._state.profilePage.messageForNewPost};
-                this._state.profilePage.postsData.unshift(newPost);
-                this._state.profilePage.messageForNewPost = '';
-                return this._callSubscriber();
-            case 'UPDATE-NEW-MESSAGE-TEXT':
-                this._state.dialogsPage.textMessage = action.newTextMessage;
-                return this._callSubscriber();
-            case 'ADD-MESSAGE':
-                const newMessage:MessageDataType = {id:1,message: this._state.dialogsPage.textMessage};
-                this._state.dialogsPage.messageData.push(newMessage);
-                this._state.dialogsPage.textMessage = '';
-                return this._callSubscriber();
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage,action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action);
+        this._callSubscriber();
     },
     subscribe(observer: () => void) {
         this._callSubscriber = observer;
     },
 }
-
-export const addPostAC = () =>  {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
-
-export const updateNewPostNextAC = (newText: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText
-    } as const
-}
-
-export const addMessageAC = (textMessage:string) => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
-
-export const updateMessageTextAC = (newTextMessage:string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newTextMessage
-    } as const
-}
-

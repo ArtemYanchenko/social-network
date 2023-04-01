@@ -2,7 +2,7 @@ import React, {ChangeEvent, createRef, useState} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ProfilePropsType} from '../Profile';
-import {addPostAC, updateNewPostNextAC} from '../../../redux/store';
+import {addPostAC, updateNewPostNextAC} from '../../../redux/profile-reducer';
 
 
 const MyPosts = (props: ProfilePropsType) => {
