@@ -15,9 +15,11 @@ export const profileReducer = (state:ProfilePageType = initialState, action: Act
         case 'ADD-POST':
             const newPost: PostsDataType = {id: 1, likesCount: 0, message: state.messageForNewPost};
             state.postsData.unshift(newPost);
+            state.messageForNewPost = '';
             return state;
         case 'UPDATE-NEW-POST-TEXT':
             state.messageForNewPost = action.newText;
+
             return state;
         default:
             return state;

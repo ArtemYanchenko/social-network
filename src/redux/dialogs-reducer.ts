@@ -41,6 +41,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
         case 'ADD-MESSAGE':
             const newMessage: MessageDataType = {id: 1, message: state.textMessage};
             state.messageData.push(newMessage);
+            state.textMessage = '';
             return state;
         default:
             return state;

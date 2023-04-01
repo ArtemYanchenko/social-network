@@ -7,10 +7,11 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
-import {RootStateType, StateType} from './redux/store';
+import {DialogsPageType, ProfilePageType, RootStateType, StateType} from './redux/store';
+import {AnyAction, EmptyObject, Store} from 'redux';
 
 export type StatePropsType = {
-    store: RootStateType,
+    store: Store<EmptyObject & { dialogsPage: DialogsPageType; profilePage: ProfilePageType }, AnyAction>,
 }
 
 function App(props: StatePropsType) {
