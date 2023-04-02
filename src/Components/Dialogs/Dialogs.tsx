@@ -6,23 +6,20 @@ import {ActionsTypes, DialogsPageType} from '../../redux/store';
 import {addMessageAC, updateMessageTextAC} from '../../redux/dialogs-reducer';
 
 type PropsType = {
-    sendMessage:()=>void
-    updateMessageText:(newText:string)=>void
-    dialogsPage:DialogsPageType
+    sendMessage: () => void
+    updateMessageText: (newText: string) => void
+    dialogsPage: DialogsPageType
 }
-
-
 
 
 const Dialogs = (props: PropsType) => {
 
     const dialogsElements = props.dialogsPage.dialogsData.map((d) => <DialogItem name={d.name} id={d.id}
-                                                                                     img={d.img}/>)
+                                                                                 img={d.img}/>)
     const messagesElements = props.dialogsPage.messageData.map((m) => <Message message={m.message}/>)
 
-
     const sendMessageHandler = () => {
-      props.sendMessage();
+        props.sendMessage();
     }
 
     const updateMessageTextHandler = (e: ChangeEvent<HTMLInputElement>) => {

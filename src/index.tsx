@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import {store} from './redux/redux-store';
+import {StoreContext} from './StoreContext';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -14,7 +15,9 @@ export let rerenderEntireTree = () => {
 
     root.render(
         <BrowserRouter>
-            <App store={store}/>
+            <StoreContext.Provider value={store}>
+            <App />
+            </StoreContext.Provider>
         </BrowserRouter>
     );
 }

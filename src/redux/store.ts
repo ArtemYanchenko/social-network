@@ -34,8 +34,6 @@ export type RootStateType = {
     getState: () => StateType
     dispatch: (action: ActionsTypes) => void
     _callSubscriber: () => void
-    // addPost: (postText: string) => void
-    // changeTitleTextArea: (newTitle: string) => void
     subscribe: (observer: () => void) => void
 }
 
