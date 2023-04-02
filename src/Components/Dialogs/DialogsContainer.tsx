@@ -6,6 +6,7 @@ import {ActionsTypes, DialogsPageType} from '../../redux/store';
 import {addMessageAC, updateMessageTextAC} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {StoreContext} from '../../StoreContext';
+import {connect} from 'react-redux';
 
 const DialogsContainer = () => {
 
@@ -31,5 +32,22 @@ const DialogsContainer = () => {
         </StoreContext.Consumer>
     );
 };
+
+const mapStateToProps = () => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (state) => {
+    return {
+        updateMessageText:(newText: string) => {
+            store.dispatch(updateMessageTextAC(newText))
+        }
+    }
+}
+
+
+const SuperDialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;
