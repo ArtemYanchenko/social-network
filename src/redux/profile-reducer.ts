@@ -32,7 +32,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return {...state,messageForNewPost:action.newText};
         case 'ADD-POST':
             const newPost: PostsDataType = {id: 1, likesCount: 0, message: state.messageForNewPost};
-            return {...state,messageForNewPost: '', postsData:[newPost,...state.postsData]};
+            return {...state, postsData:[newPost,...state.postsData],messageForNewPost: ''};
         default:
             return state;
     }
