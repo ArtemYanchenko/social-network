@@ -2,17 +2,10 @@ import React, {ChangeEvent, useState} from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {ActionsTypes, DialogsPageType} from '../../redux/store';
-import {addMessageAC, updateMessageTextAC} from '../../redux/dialogs-reducer';
-
-type PropsType = {
-    sendMessage: () => void
-    updateMessageText: (newText: string) => void
-    dialogsPage: DialogsPageType
-}
+import {DialogsContainerType} from './DialogsContainer';
 
 
-const Dialogs = (props: PropsType) => {
+const Dialogs = (props: DialogsContainerType) => {
 
     const dialogsElements = props.dialogsPage.dialogsData.map((d) => <DialogItem name={d.name} id={d.id}
                                                                                  img={d.img}/>)

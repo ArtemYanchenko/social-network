@@ -1,14 +1,13 @@
 import React from 'react';
 import classes from './../Dialogs.module.css';
 import {Simulate} from 'react-dom/test-utils';
-import input = Simulate.input;
 
 
-type MessageItemPropsType = {
+type PropsType = {
     message: string
 }
 
-const Message = (props: MessageItemPropsType) => {
+const Message = (props: PropsType) => {
     return (
             <div className={classes.message}>
                 {props.message}

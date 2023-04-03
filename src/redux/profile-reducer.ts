@@ -1,5 +1,15 @@
-import {ActionsTypes, PostsDataType, ProfilePageType} from './store';
+import {addMessageAC, updateMessageTextAC} from './dialogs-reducer';
 
+export type PostsDataType = {
+    id: number,
+    likesCount: number,
+    message: string
+}
+
+type InitialStateType = {
+    messageForNewPost: string
+    postsData: PostsDataType[]
+}
 
 const initialState = {
     messageForNewPost: '',
@@ -9,7 +19,13 @@ const initialState = {
     ]
 }
 
-export const profileReducer = (state:ProfilePageType = initialState, action: ActionsTypes) => {
+type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostNextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateMessageTextAC>
+
+export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
 
     switch (action.type) {
         case 'ADD-POST':

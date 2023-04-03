@@ -1,17 +1,11 @@
 import React, {ChangeEvent, createRef, useState} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {PostsDataType} from '../../../redux/store';
+import {MyPostsContainerPropsType} from './MyPostsContainer';
 
 
-type PropsType = {
-    addPost:()=>void
-    updatePostText:(newPostText:string)=>void
-    postsData:PostsDataType[]
-    messageForNewPost: string
-}
 
-const MyPosts = (props: PropsType ) => {
+const MyPosts = (props: MyPostsContainerPropsType ) => {
 
     const addPostHandler = () => {
         props.addPost();

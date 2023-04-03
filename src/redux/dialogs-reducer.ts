@@ -1,4 +1,30 @@
-import {ActionsTypes, DialogsPageType, MessageDataType} from './store';
+import {addPostAC, updateNewPostNextAC} from './profile-reducer';
+
+type DialogsDataType = {
+    id: number,
+    name: string,
+    img: string
+}
+
+type MessageDataType = {
+    id: number,
+    message: string
+}
+
+export type DialogsPageType = {
+    dialogsData: DialogsDataType[],
+    messageData: MessageDataType[],
+    textMessage: string
+}
+
+
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostNextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateMessageTextAC>
+
+
 
 const initialState = {
     dialogsData: [
@@ -33,7 +59,7 @@ const initialState = {
     textMessage: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT':
             state.textMessage = action.newTextMessage;
@@ -49,7 +75,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
 }
 
 
-export const addMessageAC = (textMessage: string) => {
+export const addMessageAC = () => {
     return {
         type: 'ADD-MESSAGE'
     } as const

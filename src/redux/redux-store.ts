@@ -1,13 +1,15 @@
-import {AnyAction, combineReducers, createStore, EmptyObject, Store } from "redux";
+import {combineReducers, createStore} from 'redux';
 import {profileReducer} from './profile-reducer';
 import {dialogsReducer} from './dialogs-reducer';
-import {DialogsPageType, ProfilePageType} from './store';
 
+export type AppStateType = ReturnType<typeof rootReducer>
 
-const reducers = combineReducers({
-    profilePage:profileReducer,
-    dialogsPage:dialogsReducer
+const rootReducer = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer
 })
 
 
-export const store: Store<EmptyObject & { dialogsPage: DialogsPageType; profilePage: ProfilePageType }, AnyAction> = createStore(reducers);
+
+export const store = createStore(rootReducer);
+

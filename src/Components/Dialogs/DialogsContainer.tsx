@@ -1,53 +1,39 @@
-import React, {ChangeEvent, useState} from 'react';
-import classes from './Dialogs.module.css';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import {ActionsTypes, DialogsPageType} from '../../redux/store';
-import {addMessageAC, updateMessageTextAC} from '../../redux/dialogs-reducer';
+import React from 'react';
+import {addMessageAC, DialogsPageType, updateMessageTextAC} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
-import {StoreContext} from '../../StoreContext';
 import {connect} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
+import {Dispatch} from 'redux';
 
-const DialogsContainer = () => {
 
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                const state = store.getState().dialogsPage
+type MapStatePropsType = {
+    dialogsPage: DialogsPageType
+}
 
-                const sendMessage = () => {
-                    if (state.textMessage) {
-                        store.dispatch(addMessageAC(state.textMessage))
-                    }
-                }
+type MapDispatchPropsType = {
+    updateMessageText: (newText: string) => void,
+    sendMessage: () => void
+}
 
-                const updateMessageText = (newText: string) => {
-                    store.dispatch(updateMessageTextAC(newText))
-                }
-                return (
-                    <Dialogs sendMessage={sendMessage} updateMessageText={updateMessageText} dialogsPage={state}/>
-                )
-            }
-            }
-        </StoreContext.Consumer>
-    );
-};
+export type DialogsContainerType = MapDispatchPropsType & MapStatePropsType
 
-const mapStateToProps = () => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-
+        dialogsPage: state.dialogsPage
     }
 }
 
-const mapDispatchToProps = (state) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        updateMessageText:(newText: string) => {
-            store.dispatch(updateMessageTextAC(newText))
+        updateMessageText: (newText: string) => {
+            dispatch(updateMessageTextAC(newText))
+        },
+        sendMessage: () => {
+            dispatch(addMessageAC())
+
         }
     }
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
-const SuperDialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
-
-export default DialogsContainer;
