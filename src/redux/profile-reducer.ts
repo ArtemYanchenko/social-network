@@ -28,29 +28,25 @@ type ActionsTypes =
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
 
     switch (action.type) {
+        case 'UPDATE-NEW-POST-TEXT':
+            return {...state,messageForNewPost:action.newText};
         case 'ADD-POST':
             const newPost: PostsDataType = {id: 1, likesCount: 0, message: state.messageForNewPost};
-            state.postsData.unshift(newPost);
-            state.messageForNewPost = '';
-            return state;
-        case 'UPDATE-NEW-POST-TEXT':
-            state.messageForNewPost = action.newText;
-
-            return state;
+            return {...state,messageForNewPost: '', postsData:[newPost,...state.postsData]};
         default:
             return state;
     }
-}
-
-export const addPostAC = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
 }
 
 export const updateNewPostNextAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText
+    } as const
+}
+
+export const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
     } as const
 }

@@ -25,7 +25,6 @@ export type ActionsTypes =
     | ReturnType<typeof updateMessageTextAC>
 
 
-
 const initialState = {
     dialogsData: [
         {id: 1, name: 'Maria', img: 'https://i.pinimg.com/236x/36/40/a5/3640a5fe598c887fcb2bf67b72dabe89.jpg'},
@@ -59,31 +58,29 @@ const initialState = {
     textMessage: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.textMessage = action.newTextMessage;
-            return state;
+            return {...state, textMessage: action.newTextMessage};
         case 'ADD-MESSAGE':
             const newMessage: MessageDataType = {id: 1, message: state.textMessage};
-            state.messageData.push(newMessage);
-            state.textMessage = '';
-            return state;
+            return {...state, messageData: [...state.messageData, newMessage], textMessage: ''};
         default:
             return state;
     }
 }
 
 
-export const addMessageAC = () => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
-
 export const updateMessageTextAC = (newTextMessage: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE-TEXT',
         newTextMessage
+    } as const
+}
+
+
+export const addMessageAC = () => {
+    return {
+        type: 'ADD-MESSAGE'
     } as const
 }
