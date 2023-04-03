@@ -24,6 +24,7 @@ function App() {
                         <Route path={'/music'} component={Music}/>
                     </Switch>
                 </div>
+
             </div>
         </div>
     );
