@@ -9,8 +9,6 @@ import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import Users from './Components/Users/Users';
 
-
-
 function App() {
     return (
         <div className="App">
