@@ -8,6 +8,7 @@ import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import Users from './Components/Users/Users';
+import UsersContainer from './Components/Users/UsersContainer';
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
                     <Switch>
                         <Route path={'/profile'} component={Profile}/>
                         <Route path={'/dialogs'} component={DialogsContainer}/>
-                        <Route path={'/users'} component={Users}/>
+                        <Route path={'/users'} component={UsersContainer}/>
                         <Route path={'/news'} component={News}/>
                         <Route path={'/music'} component={Music}/>
                     </Switch>
