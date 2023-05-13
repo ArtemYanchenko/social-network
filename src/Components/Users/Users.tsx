@@ -1,14 +1,24 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import './Users.css'
 import {UsersContainerType} from './UsersContainer';
+import {log} from 'util';
 
 
-const Users = (props:UsersContainerType) => {
+const Users = (props: UsersContainerType) => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res =>
+           console.log(res.data.items)
+        )
+    const addUserHandler = () => {
+    }
+
     return (
         <div>
-            {props.users.map(user=>{
+            <button onClick={addUserHandler}>add users</button>
+            {}
+            {props.users.map(user => {
                 const onClickHandler = () => {
-                    props.followUserAC(user.userId,!user.followed)
+                    props.followUserAC(user.userId, !user.followed)
                 }
                 return (
                     <>
