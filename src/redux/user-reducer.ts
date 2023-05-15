@@ -1,79 +1,43 @@
-import {v1} from 'uuid';
-
-
 export type UsersType = {
-    users: UserType[]
-}
-
-export type UserType = {
-    userId: string
     followed: boolean
-    fullName: string
-    status: string
-    location: { city: string, country: string }
+    id: number
+    name: string
+    photos: { small: string | null, large: string | null }
+    status: string | null
+    uniqueUrlName: string | null
 }
 
-const initialState: UsersType = {
-    users: [
-        {
-            userId: v1(),
-            followed: true,
-            fullName: 'Artem',
-            status: 'hello,bro',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            userId: v1(),
-            followed: true,
-            fullName: 'Karina',
-            status: 'hello, i am wife',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            userId: v1(),
-            followed: false,
-            fullName: 'Kirill',
-            status: 'hello,i am brother',
-            location: {city: 'Warsawa', country: 'Poland'}
-        },
-    ]
-}
 type ActionsTypes = FollowUserACType | SetUsersACType
 
+const initialState:UsersType[] = []
 
-export const userReducer = (state = initialState, action: ActionsTypes): UsersType => {
+export const userReducer = (state = initialState, action: ActionsTypes): UsersType[] => {
     switch (action.type) {
         case 'FOLLOW': {
-            return {
-                ...state,
-                users: state.users.map(user => user.userId === action.payload.userId ? {
-                    ...user,
-                    followed: action.payload.checked
-                } : user)
-            }
+            return state.map(el=>el.id === action.payload.id ? {...el,followed:action.payload.checked} : el)
         }
+
         case 'SET-USERS': {
-            return {...state,users:[...state.users,...action.payload.users]}
+            return [...state,...action.payload.users]
         }
 
         default:
             return state
     }
 }
-
 type FollowUserACType = ReturnType<typeof followUserAC>
-export const followUserAC = (userId: string, checked: boolean) => {
+export const followUserAC = (id: number, checked: boolean) => {
     return {
         type: 'FOLLOW',
         payload: {
-            userId,
+            id,
             checked
         }
     } as const
 }
 
 type SetUsersACType = ReturnType<typeof setUsersAC>
-export const setUsersAC = (users: UserType[]) => {
+export const setUsersAC = (users: UsersType[]) => {
     return {
         type: 'SET-USERS',
         payload: {
