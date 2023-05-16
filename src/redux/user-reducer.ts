@@ -7,7 +7,7 @@ export type UsersType = {
     uniqueUrlName: string | null
 }
 
-type ActionsTypes = FollowUserACType | SetUsersACType
+type ActionsTypes = FollowUserACType | SetUsersACType | toggleUsersPageAC | SetTotalCountACType
 
 // const initialState: UsersType[] = [{
 //     followed: false,
@@ -18,21 +18,46 @@ type ActionsTypes = FollowUserACType | SetUsersACType
 //     uniqueUrlName: null
 // }]
 
-const initialState: UsersType[] = []
+type InitialStateType = {
+    users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+}
 
-export const userReducer = (state = initialState, action: ActionsTypes): UsersType[] => {
+const initialState: InitialStateType = {
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
+}
+
+export const userReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW': {
-            return state.map(el => el.id === action.payload.id ? {...el, followed: action.payload.checked} : el)
+            return {
+                ...state,
+                users: state.users.map(el => el.id === action.payload.id ? {
+                    ...el,
+                    followed: action.payload.checked
+                } : el)
+            }
         }
         case 'SET-USERS': {
-            debugger
-            return [...state, ...action.payload.users]
+            return {...state, users: [...action.payload.users]}
+        }
+        case 'TOGGLE-USERS-PAGE': {
+            return {...state, currentPage: action.payload.currentPage}
+        }
+        case 'SET-TOTAL-COUNT':{
+            return {...state,totalUsersCount:action.payload.totalCount}
         }
         default:
             return state
+
     }
 }
+
 type FollowUserACType = ReturnType<typeof followUserAC>
 export const followUserAC = (id: number, checked: boolean) => {
     return {
@@ -50,6 +75,26 @@ export const setUsersAC = (users: UsersType[]) => {
         type: 'SET-USERS',
         payload: {
             users
+        }
+    } as const
+}
+
+type toggleUsersPageAC = ReturnType<typeof toggleUsersPageAC>
+export const toggleUsersPageAC = (currentPage: number) => {
+    return {
+        type: 'TOGGLE-USERS-PAGE',
+        payload: {
+            currentPage
+        }
+    } as const
+}
+
+type SetTotalCountACType = ReturnType<typeof setTotalCountAC>
+export const setTotalCountAC = (totalCount: number) => {
+    return {
+        type: 'SET-TOTAL-COUNT',
+        payload: {
+            totalCount
         }
     } as const
 }
