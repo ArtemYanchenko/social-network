@@ -7,7 +7,7 @@ export type UsersType = {
     uniqueUrlName: string | null
 }
 
-type ActionsTypes = FollowUserACType | SetUsersACType | toggleUsersPageAC | SetTotalCountACType
+type ActionsTypes = FollowUserACType | SetUsersACType | toggleUsersPageAC | SetTotalCountACType | ToggleFetchingACType
 
 // const initialState: UsersType[] = [{
 //     followed: false,
@@ -23,13 +23,15 @@ type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 const initialState: InitialStateType = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export const userReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -49,8 +51,11 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
         case 'TOGGLE-USERS-PAGE': {
             return {...state, currentPage: action.payload.currentPage}
         }
-        case 'SET-TOTAL-COUNT':{
-            return {...state,totalUsersCount:action.payload.totalCount}
+        case 'SET-TOTAL-COUNT': {
+            return {...state, totalUsersCount: action.payload.totalCount}
+        }
+        case 'TOGGLE-FETCHING': {
+            return {...state, isFetching: action.payload.checked}
         }
         default:
             return state
@@ -95,6 +100,17 @@ export const setTotalCountAC = (totalCount: number) => {
         type: 'SET-TOTAL-COUNT',
         payload: {
             totalCount
+        }
+    } as const
+}
+
+
+type ToggleFetchingACType = ReturnType<typeof toggleFetchingAC>
+export const toggleFetchingAC = (checked:boolean) => {
+    return {
+        type: 'TOGGLE-FETCHING',
+        payload:{
+            checked
         }
     } as const
 }

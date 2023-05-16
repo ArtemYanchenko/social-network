@@ -2,19 +2,23 @@ import React from 'react';
 import axios from 'axios';
 import classes from './Users.module.css';
 import {UsersType} from '../../redux/user-reducer';
+import PreLoader from '../common/PreLoader';
 
 type PropsType = {
-    users:UsersType[]
-    totalUsersCount:number
-    pageSize:number
-    currentPage:number
+    users: UsersType[]
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    isFetching: boolean
     followUser: (id: number, checked: boolean) => void
     setUsers: (users: UsersType[]) => void
-    toggleUsersPage:(currentPage:number)=>void
-    setTotalCount:(totalCount:number)=>void
+    toggleUsersPage: (currentPage: number) => void
+    setTotalCount: (totalCount: number) => void
+    toggleFetching: (checked: boolean) => void
+    onChangePage: (page: number) => void
 }
 
-const Users = (props:PropsType) => {
+const Users = (props: PropsType) => {
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -23,12 +27,11 @@ const Users = (props:PropsType) => {
     return (
         <div>
             <div>
+                {props.isFetching ? <PreLoader/> : null}
                 {pages.map(page => {
                     const toggleUserPageHandler = (page: number) => {
                         props.toggleUsersPage(page)
-                        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.pageSize}&page=${page}`).then(res => {
-                            props.setUsers(res.data.items)
-                        })
+                        props.onChangePage(page)
                     }
                     return (
                         <span className={props.currentPage === page ? classes.selectPage : ''}
