@@ -1,21 +1,21 @@
 import React from 'react';
-import {UsersType} from '../../redux/user-reducer';
 import axios from 'axios';
 import {UsersContainerType} from './UsersContainer';
 
 
 class UsersClass extends React.Component<UsersContainerType> {
-    constructor(props:UsersContainerType) {
-        super(props);
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
             this.props.setUsersAC(res.data.items)
         })
     }
-     addUserHandler = () => {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
-                this.props.setUsersAC(res.data.items)
-            })
+
+    addUserHandler = () => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
+            this.props.setUsersAC(res.data.items)
+        }).catch(e=>console.log('error',e))
     }
+
     render() {
         return (<div>
                 <button onClick={this.addUserHandler}>add users</button>
