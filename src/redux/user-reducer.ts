@@ -9,18 +9,26 @@ export type UsersType = {
 
 type ActionsTypes = FollowUserACType | SetUsersACType
 
-const initialState:UsersType[] = []
+// const initialState: UsersType[] = [{
+//     followed: false,
+//     id: 29075,
+//     name: 'cutiePie',
+//     photos: {small: null, large: null},
+//     status: null,
+//     uniqueUrlName: null
+// }]
+
+const initialState: UsersType[] = []
 
 export const userReducer = (state = initialState, action: ActionsTypes): UsersType[] => {
     switch (action.type) {
         case 'FOLLOW': {
-            return state.map(el=>el.id === action.payload.id ? {...el,followed:action.payload.checked} : el)
+            return state.map(el => el.id === action.payload.id ? {...el, followed: action.payload.checked} : el)
         }
-
         case 'SET-USERS': {
-            return [...state,...action.payload.users]
+            debugger
+            return [...state, ...action.payload.users]
         }
-
         default:
             return state
     }
