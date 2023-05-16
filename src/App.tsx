@@ -7,7 +7,6 @@ import {Route, Switch} from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
-import Users from './Components/Users/Users';
 import UsersContainer from './Components/Users/UsersContainer';
 
 function App() {
