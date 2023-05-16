@@ -3,7 +3,29 @@ import {AppStateType} from '../../redux/redux-store';
 import {followUserAC, setTotalCountAC, setUsersAC, toggleUsersPageAC, UsersType} from '../../redux/user-reducer';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import UsersClass from './UsersClass';
+import axios from 'axios';
+import Users from './Users';
+
+class UsersAPI extends React.Component<UsersContainerType> {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(res => {
+            this.props.setUsers(res.data.items);
+            this.props.setTotalCount((res.data.totalCount / 100))
+        })
+    }
+
+    render() {
+        return <Users users={this.props.users}
+                      totalUsersCount={this.props.totalUsersCount}
+                      pageSize={this.props.pageSize}
+                      currentPage={this.props.currentPage}
+                      followUser={this.props.followUser}
+                      setUsers={this.props.setUsers}
+                      setTotalCount={this.props.setTotalCount}
+                      toggleUsersPage={this.props.toggleUsersPage}
+        />
+    }
+}
 
 export type UsersContainerType = MapStateToPropsType & MapDispatchToProps
 
@@ -48,4 +70,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersClass)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPI)
