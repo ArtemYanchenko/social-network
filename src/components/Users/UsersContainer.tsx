@@ -8,7 +8,6 @@ import {
     toggleUsersPage,
     UsersType
 } from '../../redux/user-reducer';
-import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Users from './Users';
@@ -16,19 +15,21 @@ import Users from './Users';
 class UsersAPI extends React.Component<UsersContainerType> {
     componentDidMount() {
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(res => {
-            this.props.setUsers(res.data.items);
-            this.props.setTotalCount((res.data.totalCount / 100))
-            this.props.toggleFetching(false)
-        })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
+            .then(res => {
+                this.props.setUsers(res.data.items);
+                this.props.setTotalCount((res.data.totalCount / 100))
+                this.props.toggleFetching(false)
+            })
     }
 
     onChangePage = (page: number) => {
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`).then(res => {
-            this.props.setUsers(res.data.items);
-            this.props.toggleFetching(false)
-        })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
+            .then(res => {
+                this.props.setUsers(res.data.items);
+                this.props.toggleFetching(false)
+            })
     }
 
     render() {
@@ -75,4 +76,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps, {followUser, setUsers, toggleUsersPage, setTotalCount, toggleFetching})(UsersAPI)
+export default connect(mapStateToProps, {
+    followUser,
+    setUsers,
+    toggleUsersPage,
+    setTotalCount,
+    toggleFetching
+})(UsersAPI)

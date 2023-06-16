@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import classes from './Users.module.css';
 import {UsersType} from '../../redux/user-reducer';
 import PreLoader from '../common/PreLoader';
@@ -24,6 +23,7 @@ const Users = (props: PropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
     return (
         <div>
             <div>
@@ -51,6 +51,10 @@ const Users = (props: PropsType) => {
                         <div>{user.followed}</div>
                         <div>{user.status}</div>
                         <div>{user.name}</div>
+                        <div>
+                            {user.photos.small ? <img src={user.photos.small} alt='avatar-user'/> :
+                                <img className={classes.avatar} src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png" alt='avatar-user'/>}
+                        </div>
                     </>
                 )
             })}
