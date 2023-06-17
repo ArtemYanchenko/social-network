@@ -21,7 +21,7 @@ const initialState = {
     profile: {   userId: 2,
         lookingForAJob: true,
         lookingForAJobDescription: 'lookingForAJobDescription',
-        fullName: 'fullName',
+        fullName: 'Artem Yanchenko',
         contacts: {
             github: 'github',
             vk: 'vk',

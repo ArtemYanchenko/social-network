@@ -10,18 +10,23 @@ type PropsType = {
 const ProfileInfo = (props: PropsType) => {
     return (
         <div className={classes.profileInfoBlock}>
-            {/*<img*/}
-            {/*    className={classes.mainImg}*/}
-            {/*    src="https://klike.net/uploads/posts/2019-11/1572608904_9.jpg"*/}
-            {/*    alt="photo"/>*/}
             {!props.profile ? <PreLoader/>
                 : <div className={classes.descriptionBlock}>
-                    <img
-                        src={props.profile.photos.small !== null ? props.profile.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}/>
-                    <div>Имя: {props.profile.fullName}</div>
-                    <div>VK: {props.profile.contacts.vk}</div>
-                </div>
-            }
+                    <img className={classes.mainImg}
+                         alt={'mainPhoto'}
+                         src={props.profile.photos.small !== null
+                             ? props.profile.photos.small
+                             : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
+                    />
+                    <div>
+                        <p className={classes.userName}>{props.profile.fullName}</p>
+                        <p>{props.profile.contacts.vk}</p>
+                    </div>
+                </div>}
+            <div className={classes.buttonBlock}>
+                <a href='#'>Edit profile</a>
+                <a href='#'>More</a>
+            </div>
         </div>
     );
 };
