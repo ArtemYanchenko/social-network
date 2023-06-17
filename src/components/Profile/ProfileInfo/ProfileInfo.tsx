@@ -16,8 +16,10 @@ const ProfileInfo = (props: PropsType) => {
             {/*    alt="photo"/>*/}
             {!props.profile ? <PreLoader/>
                 : <div className={classes.descriptionBlock}>
+                    <img
+                        src={props.profile.photos.small !== null ? props.profile.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}/>
                     <div>Имя: {props.profile.fullName}</div>
-                    <img src={props.profile.photos.small !==null ? props.profile.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}/>
+                    <div>VK: {props.profile.contacts.vk}</div>
                 </div>
             }
         </div>
