@@ -9,7 +9,7 @@ export type PostsDataType = {
 type InitialStateType = {
     messageForNewPost: string
     postsData: PostsDataType[],
-    profile:UserProfileType | null
+    profile:UserProfileType
 }
 
 const initialState = {
@@ -18,7 +18,23 @@ const initialState = {
         {id: 1, likesCount: 5, message: 'hi, my first post'},
         {id: 2, likesCount: 10, message: 'i am fine'},
     ],
-    profile:null
+    profile: {   userId: 2,
+        lookingForAJob: true,
+        lookingForAJobDescription: 'lookingForAJobDescription',
+        fullName: 'fullName',
+        contacts: {
+            github: 'github',
+            vk: 'vk',
+            facebook: 'facebook',
+            instagram: 'instagram',
+            twitter: 'twitter',
+            website: 'website',
+            youtube: 'youtube',
+        },
+        photos: {
+            small: null,
+            large: null,
+        }}
 }
 
 type ActionsTypes =
