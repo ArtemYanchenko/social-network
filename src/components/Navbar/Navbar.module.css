@@ -1,22 +1,26 @@
 .nav {
     grid-area: nav;
-
     padding: 10px;
+    margin-left: 100px;
 }
 
 .nav div {
     margin-bottom: 3px;
+
 }
 
 .nav a {
     text-decoration: none;
     color: black;
+
     /*margin-bottom: 30px;*/
 }
 
 .navLink {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
 .navLink div {
@@ -34,6 +38,5 @@
 }
 
 .navLink:hover {
-    cursor: pointer;
     background-color: #e8e4ec;
 }

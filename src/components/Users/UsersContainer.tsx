@@ -15,7 +15,7 @@ import Users from './Users';
 class UsersAPI extends React.Component<UsersContainerType> {
     componentDidMount() {
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,{withCredentials:true})
             .then(res => {
                 this.props.setUsers(res.data.items);
                 this.props.setTotalCount((res.data.totalCount / 100))
@@ -25,7 +25,7 @@ class UsersAPI extends React.Component<UsersContainerType> {
 
     onChangePage = (page: number) => {
         this.props.toggleFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`,{withCredentials:true})
             .then(res => {
                 this.props.setUsers(res.data.items);
                 this.props.toggleFetching(false)

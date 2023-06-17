@@ -49,12 +49,12 @@ const Navbar = () => {
 
     return (
         <nav className={classes.nav + ' ' + classes.active}>
-            <div className={classes.navLink}><NavLink to={'/profile'}>{svgProfile}Profile</NavLink></div>
-            <div className={classes.navLink}><NavLink to={'/dialogs'}>{svgDialogs}Messages</NavLink></div>
-            <div className={classes.navLink}><NavLink to={'/users'}>{svgUsers}Users</NavLink></div>
-            <div className={classes.navLink}><NavLink to={'/news'}>{svgNews}News</NavLink></div>
-            <div className={classes.navLink}><NavLink to={'/music'}>{svgMusic}Music</NavLink></div>
-            <div className={classes.navLink}><NavLink to={'/settings'}>{svgSettings}Settings</NavLink></div>
+            <NavLink className={classes.navLink} to={'/profile'}>{svgProfile}Profile</NavLink>
+            <NavLink className={classes.navLink} to={'/dialogs'}>{svgDialogs}Messages</NavLink>
+            <NavLink className={classes.navLink} to={'/users'}>{svgUsers}Users</NavLink>
+            <NavLink className={classes.navLink} to={'/news'}>{svgNews}News</NavLink>
+            <NavLink className={classes.navLink} to={'/music'}>{svgMusic}Music</NavLink>
+            <NavLink className={classes.navLink} to={'/settings'}>{svgSettings}Settings</NavLink>
         </nav>
     );
 };
