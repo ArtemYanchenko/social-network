@@ -1,15 +1,25 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
+import {UserProfileType} from '../../../redux/profile-reducer';
+import PreLoader from '../../common/PreLoader';
 
+type PropsType = {
+    profile: UserProfileType
+}
 
-const ProfileInfo = () => {
+const ProfileInfo = (props: PropsType) => {
     return (
         <div className={classes.profileInfoBlock}>
-            <img
-                className={classes.mainImg}
-                src="https://klike.net/uploads/posts/2019-11/1572608904_9.jpg"
-                alt="photo"/>
-            <div className={classes.descriptionBlock}>ava+desc</div>
+            {/*<img*/}
+            {/*    className={classes.mainImg}*/}
+            {/*    src="https://klike.net/uploads/posts/2019-11/1572608904_9.jpg"*/}
+            {/*    alt="photo"/>*/}
+            {!props.profile ? <PreLoader/>
+                : <div className={classes.descriptionBlock}>
+                    <div>Имя: {props.profile.fullName}</div>
+                    <img src={props.profile.photos.small !==null ? props.profile.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}/>
+                </div>
+            }
         </div>
     );
 };

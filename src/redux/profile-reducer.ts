@@ -8,7 +8,8 @@ export type PostsDataType = {
 
 type InitialStateType = {
     messageForNewPost: string
-    postsData: PostsDataType[]
+    postsData: PostsDataType[],
+    profile:UserProfileType | null
 }
 
 const initialState = {
@@ -16,23 +17,29 @@ const initialState = {
     postsData: [
         {id: 1, likesCount: 5, message: 'hi, my first post'},
         {id: 2, likesCount: 10, message: 'i am fine'},
-    ]
+    ],
+    profile:null
 }
 
 type ActionsTypes =
-    ReturnType<typeof addPostAC>
+    | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostNextAC>
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof updateMessageTextAC>
+    | ReturnType<typeof setUserProfile>
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
+
+export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case 'UPDATE-NEW-POST-TEXT':
-            return {...state,messageForNewPost:action.newText};
+            return {...state, messageForNewPost: action.newText};
         case 'ADD-POST':
             const newPost: PostsDataType = {id: 1, likesCount: 0, message: state.messageForNewPost};
-            return {...state, postsData:[newPost,...state.postsData],messageForNewPost: ''};
+            return {...state, postsData: [newPost, ...state.postsData], messageForNewPost: ''};
+        case 'SET-USER': {
+            return {...state,profile:action.profile}
+        }
         default:
             return state;
     }
@@ -49,4 +56,28 @@ export const addPostAC = () => {
     return {
         type: 'ADD-POST'
     } as const
+}
+
+
+export const setUserProfile = (profile: UserProfileType) => ({type: 'SET-USER', profile} as const)
+
+
+export type UserProfileType = {
+    userId: number;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
+    contacts: {
+        github: string;
+        vk: string;
+        facebook: string;
+        instagram: string;
+        twitter: string;
+        website: string;
+        youtube: string;
+    };
+    photos: {
+        small: string | null;
+        large: string | null;
+    };
 }

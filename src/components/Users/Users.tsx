@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Users.module.css';
 import {UsersType} from '../../redux/user-reducer';
 import PreLoader from '../common/PreLoader';
+import {NavLink} from 'react-router-dom';
 
 type PropsType = {
     users: UsersType[]
@@ -25,7 +26,7 @@ const Users = (props: PropsType) => {
     }
 
     return (
-        <div>
+        <div className={classes.usersContainer}>
             <div>
                 {props.isFetching ? <PreLoader/> : null}
                 {pages.map(page => {
@@ -38,26 +39,32 @@ const Users = (props: PropsType) => {
                               onClick={() => toggleUserPageHandler(page)}>{page}</span>)
                 })}
             </div>
-            {props.users.map(user => {
-                const onClickHandler = () => {
-                    props.followUser(user.id, !user.followed)
-                }
-                return (
-                    <>
-                        <div>
-                            <button onClick={onClickHandler}>{user.followed ? 'follow' : 'unfollow'}</button>
+            <div className={classes.usersBlock}>
+                {props.users.map(user => {
+                    const onClickHandler = () => {
+                        props.followUser(user.id, !user.followed)
+                    }
+                    return (
+                        <div className={classes.userBlock}>
+                            <div>
+                                <button onClick={onClickHandler}>{user.followed ? 'follow' : 'unfollow'}</button>
+                            </div>
+                            <div>{user.id}</div>
+                            <div>{user.followed}</div>
+                            <div>{user.status}</div>
+                            <div>{user.name}</div>
+                            <div>
+                                <NavLink to={`/profile/${user.id}`}>
+                                    <img
+                                        src={user.photos.small !== null ? user.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
+                                        alt="avatar-user"
+                                        className={classes.avatar}/>
+                                </NavLink>
+                            </div>
                         </div>
-                        <div>{user.id}</div>
-                        <div>{user.followed}</div>
-                        <div>{user.status}</div>
-                        <div>{user.name}</div>
-                        <div>
-                            {user.photos.small ? <img src={user.photos.small} alt='avatar-user'/> :
-                                <img className={classes.avatar} src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png" alt='avatar-user'/>}
-                        </div>
-                    </>
-                )
-            })}
+                    )
+                })}
+            </div>
         </div>
     );
 };
