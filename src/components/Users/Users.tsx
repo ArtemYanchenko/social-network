@@ -3,7 +3,7 @@ import classes from './Users.module.css';
 import {UsersType} from '../../bll/user-reducer';
 import PreLoader from '../common/PreLoader';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
+import {usersAPI} from '../../dal/api';
 
 type PropsType = {
     users: UsersType[]
@@ -44,17 +44,16 @@ const Users = (props: PropsType) => {
                 {props.users.map(user => {
                     const onClickHandler = () => {
                         if (!user.followed) {
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{},{withCredentials:true}).then((res) =>{
-                                debugger
-                                if(res.data.resultCode === 0) {
-                                    props.followUser(user.id, true)
-                                }
-                            })
-                        }
-                        else if (user.followed) {
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{withCredentials:true}).then((res) =>{
-                                debugger
-                                if(res.data.resultCode === 0) {
+                            usersAPI.followUser(user.id)
+                                .then(data => {
+                                    if (data.resultCode === 0) {
+                                        props.followUser(user.id, true)
+                                    }
+                                })
+                        } else {
+                            usersAPI.unfollowUser(user.id)
+                                .then(data => {
+                                if (data.resultCode === 0) {
                                     props.followUser(user.id, false)
                                 }
                             })
