@@ -63,13 +63,6 @@ const Users = (props: PropsType) => {
                     return (
                         <div className={classes.userBlock}>
                             <div>
-                                <button onClick={onClickHandler}>{user.followed ? 'follow' : 'unfollow'}</button>
-                            </div>
-                            <div>{user.id}</div>
-                            <div>{user.followed}</div>
-                            <div>{user.status}</div>
-                            <div>{user.name}</div>
-                            <div>
                                 <NavLink to={`/profile/${user.id}`}>
                                     <img
                                         src={user.photos.small !== null ? user.photos.small : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
@@ -77,6 +70,10 @@ const Users = (props: PropsType) => {
                                         className={classes.avatar}/>
                                 </NavLink>
                             </div>
+                            <div className={classes.userName}>{user.name}</div>
+                            <button className={classes.buttonFollow}
+                                    onClick={onClickHandler}>{user.followed ? 'follow' : 'unfollow'}</button>
+
                         </div>
                     )
                 })}

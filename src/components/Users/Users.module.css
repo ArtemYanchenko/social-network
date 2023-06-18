@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 90%;
 }
+
 .usersBlock {
     display: flex;
-    gap: 200px;
-    /*flex-direction: row;*/
-    /*justify-content: center;*/
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -15,8 +15,10 @@
 .userBlock {
     margin: 10px;
     display: flex;
+    width: 100px;
     flex-direction: column;
-   align-items: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .selectPage {
@@ -30,4 +32,31 @@
 .avatar {
     width: 100px;
     height: 100px;
+    border-radius: 50%;
 }
+
+.userName {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.buttonFollow {
+    background: #dee5eb;
+    color: #5b90c5;
+    border: 0 solid;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 10px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    pointer-events: auto
+}
+
+.buttonFollow:hover {
+    cursor: pointer !important;
+}
+
