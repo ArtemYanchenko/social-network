@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './Users.module.css';
-import {UsersType} from '../../redux/user-reducer';
+import {UsersType} from '../../bll/user-reducer';
 import PreLoader from '../common/PreLoader';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 type PropsType = {
     users: UsersType[]
@@ -42,7 +43,22 @@ const Users = (props: PropsType) => {
             <div className={classes.usersBlock}>
                 {props.users.map(user => {
                     const onClickHandler = () => {
-                        props.followUser(user.id, !user.followed)
+                        if (!user.followed) {
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{},{withCredentials:true}).then((res) =>{
+                                debugger
+                                if(res.data.resultCode === 0) {
+                                    props.followUser(user.id, true)
+                                }
+                            })
+                        }
+                        else if (user.followed) {
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{withCredentials:true}).then((res) =>{
+                                debugger
+                                if(res.data.resultCode === 0) {
+                                    props.followUser(user.id, false)
+                                }
+                            })
+                        }
                     }
                     return (
                         <div className={classes.userBlock}>

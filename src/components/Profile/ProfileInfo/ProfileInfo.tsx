@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
-import {UserProfileType} from '../../../redux/profile-reducer';
+import {UserProfileType} from '../../../bll/profile-reducer';
 import PreLoader from '../../common/PreLoader';
 
 type PropsType = {

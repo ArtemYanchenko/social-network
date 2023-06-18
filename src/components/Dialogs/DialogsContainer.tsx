@@ -1,8 +1,8 @@
 import React from 'react';
-import {addMessageAC, DialogsPageType, updateMessageTextAC} from '../../redux/dialogs-reducer';
+import {addMessageAC, DialogsPageType, updateMessageTextAC} from '../../bll/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/redux-store';
+import {AppStateType} from '../../bll/redux-store';
 import {Dispatch} from 'redux';
 
 

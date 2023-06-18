@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateType} from '../../redux/redux-store';
+import {AppStateType} from '../../bll/redux-store';
 import {
     followUser,
     setTotalCount,
@@ -7,7 +7,7 @@ import {
     toggleFetching,
     toggleUsersPage,
     UsersType
-} from '../../redux/user-reducer';
+} from '../../bll/user-reducer';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Users from './Users';

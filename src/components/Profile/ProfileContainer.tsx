@@ -2,8 +2,8 @@ import React from 'react';
 import Profile from './Profile';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {setUserProfile, UserProfileType} from '../../redux/profile-reducer';
-import {AppStateType} from '../../redux/redux-store';
+import {setUserProfile, UserProfileType} from '../../bll/profile-reducer';
+import {AppStateType} from '../../bll/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 

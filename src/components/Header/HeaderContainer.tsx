@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {setLogedIn, setUserData, UserInfoType} from '../../redux/auth-reducer';
-import {AppStateType} from '../../redux/redux-store';
+import {setLogedIn, setUserData, UserInfoType} from '../../bll/auth-reducer';
+import {AppStateType} from '../../bll/redux-store';
 import Header from './Header';
 
 type MapStateToPropsType= {
