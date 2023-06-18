@@ -11,12 +11,15 @@ type PropsType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
     followUser: (id: number, checked: boolean) => void
     setUsers: (users: UsersType[]) => void
     toggleUsersPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
     toggleFetching: (checked: boolean) => void
+    toggleFollowing: (userId: number,isFetching:boolean) => void
     onChangePage: (page: number) => void
+
 }
 
 const Users = (props: PropsType) => {
@@ -44,19 +47,23 @@ const Users = (props: PropsType) => {
                 {props.users.map(user => {
                     const onClickHandler = () => {
                         if (!user.followed) {
+                            props.toggleFollowing(user.id,true)
                             usersAPI.followUser(user.id)
                                 .then(data => {
                                     if (data.resultCode === 0) {
                                         props.followUser(user.id, true)
                                     }
+                                    props.toggleFollowing(user.id,false)
                                 })
                         } else {
+                            props.toggleFollowing(user.id,true)
                             usersAPI.unfollowUser(user.id)
                                 .then(data => {
-                                if (data.resultCode === 0) {
-                                    props.followUser(user.id, false)
-                                }
-                            })
+                                    if (data.resultCode === 0) {
+                                        props.followUser(user.id, false)
+                                    }
+                                    props.toggleFollowing(user.id,false)
+                                })
                         }
                     }
                     return (
@@ -71,7 +78,8 @@ const Users = (props: PropsType) => {
                             </div>
                             <div className={classes.userName}>{user.name}</div>
                             <button className={classes.buttonFollow}
-                                    onClick={onClickHandler}>{user.followed ? 'follow' : 'unfollow'}</button>
+                                    onClick={onClickHandler}
+                                    disabled={  props.followingInProgress.some(id=>user.id === id)}>{user.followed ? 'follow' : 'unfollow'}</button>
 
                         </div>
                     )

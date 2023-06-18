@@ -7,16 +7,14 @@ export type UsersType = {
     uniqueUrlName: string | null
 }
 
-type ActionsTypes = FollowUserACType | SetUsersACType | toggleUsersPageAC | SetTotalCountACType | ToggleFetchingACType
+type ActionsTypes =
+    | FollowUserACType
+    | SetUsersACType
+    | toggleUsersPageAC
+    | SetTotalCountACType
+    | ToggleFetchingACType
+    | ToggleFollowingACType
 
-// const initialState: UsersType[] = [{
-//     followed: false,
-//     id: 29075,
-//     name: 'cutiePie',
-//     photos: {small: null, large: null},
-//     status: null,
-//     uniqueUrlName: null
-// }]
 
 type InitialStateType = {
     users: UsersType[]
@@ -24,6 +22,7 @@ type InitialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 }
 
 const initialState: InitialStateType = {
@@ -31,7 +30,8 @@ const initialState: InitialStateType = {
     pageSize: 40,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 export const userReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -56,6 +56,9 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
         }
         case 'TOGGLE-FETCHING': {
             return {...state, isFetching: action.payload.checked}
+        }
+        case 'TOGGLE-FOLLOWING': {
+            return {...state, followingInProgress: action.payload.isFetching ? [...state.followingInProgress,action.payload.userId] : state.followingInProgress.filter(el=>action.payload.userId !== el) }
         }
         default:
             return state
@@ -106,11 +109,22 @@ export const setTotalCount = (totalCount: number) => {
 
 
 type ToggleFetchingACType = ReturnType<typeof toggleFetching>
-export const toggleFetching = (checked:boolean) => {
+export const toggleFetching = (checked: boolean) => {
     return {
         type: 'TOGGLE-FETCHING',
-        payload:{
+        payload: {
             checked
+        }
+    } as const
+}
+
+type ToggleFollowingACType = ReturnType<typeof toggleFollowing>
+export const toggleFollowing = (userId: number,isFetching:boolean) => {
+    return {
+        type: 'TOGGLE-FOLLOWING',
+        payload: {
+            userId,
+            isFetching
         }
     } as const
 }
