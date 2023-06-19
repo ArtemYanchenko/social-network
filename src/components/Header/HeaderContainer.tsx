@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {setLogedIn, setUserData, UserInfoType} from '../../bll/auth-reducer';
+import {authTC, setLogedIn, setUserData, UserInfoType} from '../../bll/auth-reducer';
 import {AppStateType} from '../../bll/redux-store';
 import Header from './Header';
+import {authAPI} from '../../dal/api';
 
 type MapStateToPropsType= {
     isLogedIn:boolean
@@ -12,19 +12,19 @@ type MapStateToPropsType= {
 
 type MapDispatchToPropsType = {
     setUserData:(data:UserInfoType)=>void
-    setLogedIn:(value:boolean)=>void
+    authTC:()=>void
 }
 
 type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class HeaderContainer extends React.Component<PropsType> {
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me',{withCredentials:true})
-            .then((res)=>{
-                debugger
-                this.props.setUserData(res.data.data)
-                this.props.setLogedIn(true)
-            })
+        this.props.authTC()
+        // authAPI.authMe()
+        //     .then(data=>{
+        //         this.props.setUserData(data.data)
+        //         this.props.setLogedIn(true)
+        //     })
     }
 
     render() {
@@ -35,4 +35,4 @@ class HeaderContainer extends React.Component<PropsType> {
 const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLogedIn:state.auth.isLoggedIn , login:state.auth.login})
 
 
-export default connect(mapStateToProps,{setUserData,setLogedIn})(HeaderContainer)
+export default connect(mapStateToProps,{setUserData,authTC})(HeaderContainer)

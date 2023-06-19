@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {authAPI} from '../dal/api';
+
 export type UserInfoType = {
     userId:number | null
     email:string | null
@@ -50,4 +53,14 @@ export const setLogedIn = (value:boolean) => {
             value
         }
     } as const
+}
+
+
+export const authTC = () => (dispatch:Dispatch) => {
+    authAPI.authMe()
+        .then(data=>{
+            dispatch(setUserData(data.data))
+            dispatch(setLogedIn(true))
+            // dispatch()
+        })
 }

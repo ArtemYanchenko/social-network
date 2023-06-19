@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppStateType} from '../../bll/redux-store';
 import {
-    followUser,
+    followUser, getUsersTC,
     setTotalCount,
     setUsers,
     toggleFetching,
@@ -15,13 +15,7 @@ import {usersAPI} from '../../dal/api';
 
 class UsersContainer extends React.Component<UsersContainerType> {
     componentDidMount() {
-        this.props.toggleFetching(true)
-        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setTotalCount((data.totalCount / 50))
-                this.props.toggleFetching(false)
-            })
+        this.props.getUsersTC(this.props.pageSize,this.props.currentPage);
     }
 
     onChangePage = (page: number) => {
@@ -69,6 +63,8 @@ type MapDispatchToProps = {
     setTotalCount: (totalCount: number) => void
     toggleFetching: (checked: boolean) => void
     toggleFollowing:(userId: number,isFetching:boolean) => void
+
+    getUsersTC:(pageSize: number, currentPage: number) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -88,5 +84,7 @@ export default connect(mapStateToProps, {
     toggleUsersPage,
     setTotalCount,
     toggleFetching,
-    toggleFollowing
+    toggleFollowing,
+
+    getUsersTC
 })(UsersContainer)

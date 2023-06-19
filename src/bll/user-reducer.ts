@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {usersAPI} from '../dal/api';
+
 export type UsersType = {
     followed: boolean
     id: number
@@ -58,7 +61,10 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
             return {...state, isFetching: action.payload.checked}
         }
         case 'TOGGLE-FOLLOWING': {
-            return {...state, followingInProgress: action.payload.isFetching ? [...state.followingInProgress,action.payload.userId] : state.followingInProgress.filter(el=>action.payload.userId !== el) }
+            return {
+                ...state,
+                followingInProgress: action.payload.isFetching ? [...state.followingInProgress, action.payload.userId] : state.followingInProgress.filter(el => action.payload.userId !== el)
+            }
         }
         default:
             return state
@@ -119,7 +125,7 @@ export const toggleFetching = (checked: boolean) => {
 }
 
 type ToggleFollowingACType = ReturnType<typeof toggleFollowing>
-export const toggleFollowing = (userId: number,isFetching:boolean) => {
+export const toggleFollowing = (userId: number, isFetching: boolean) => {
     return {
         type: 'TOGGLE-FOLLOWING',
         payload: {
@@ -127,4 +133,14 @@ export const toggleFollowing = (userId: number,isFetching:boolean) => {
             isFetching
         }
     } as const
+}
+
+export const getUsersTC = (pageSize: number, currentPage: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFetching(true));
+    usersAPI.getUsers(pageSize, currentPage)
+        .then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalCount((data.totalCount / 50)));
+            dispatch(toggleFetching(false));
+        })
 }

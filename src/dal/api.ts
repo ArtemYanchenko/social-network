@@ -29,3 +29,11 @@ export const profileAPI = {
             .then(res=>res.data)
     }
 }
+
+
+export const authAPI = {
+    authMe () {
+        return instance.get('auth/me')
+            .then(res=>res.data)
+    }
+}
