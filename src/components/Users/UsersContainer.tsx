@@ -1,17 +1,15 @@
 import React from 'react';
 import {AppStateType} from '../../bll/redux-store';
 import {
-    followUser, getUsersTC,
+    followUserTC,
+    getUsersTC,
     setTotalCount,
-    setUsers,
-    toggleFetching,
-    toggleFollowing,
     toggleUsersPage,
+    unfollowUserTC,
     UsersType
 } from '../../bll/user-reducer';
 import {connect} from 'react-redux';
 import Users from './Users';
-import {usersAPI} from '../../dal/api';
 
 class UsersContainer extends React.Component<UsersContainerType> {
     componentDidMount() {
@@ -19,12 +17,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 
     onChangePage = (page: number) => {
-        this.props.toggleFetching(true)
-        usersAPI.getUsers(this.props.pageSize, page)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.toggleFetching(false)
-            })
+        this.props.getUsersTC(this.props.pageSize,page)
     }
 
     render() {
@@ -34,12 +27,9 @@ class UsersContainer extends React.Component<UsersContainerType> {
                       currentPage={this.props.currentPage}
                       isFetching={this.props.isFetching}
                       followingInProgress={this.props.followingInProgress}
-                      followUser={this.props.followUser}
-                      setUsers={this.props.setUsers}
-                      setTotalCount={this.props.setTotalCount}
+                      followUserTC={this.props.followUserTC}
+                      unfollowUserTC={this.props.unfollowUserTC}
                       toggleUsersPage={this.props.toggleUsersPage}
-                      toggleFetching={this.props.toggleFetching}
-                      toggleFollowing={this.props.toggleFollowing}
                       onChangePage={this.onChangePage}
         />
     }
@@ -57,13 +47,11 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToProps = {
-    followUser: (id: number, checked: boolean) => void
-    setUsers: (users: UsersType[]) => void
     toggleUsersPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
-    toggleFetching: (checked: boolean) => void
-    toggleFollowing:(userId: number,isFetching:boolean) => void
 
+    followUserTC: (userId: number) => void
+    unfollowUserTC: (userId: number) => void
     getUsersTC:(pageSize: number, currentPage: number) => void
 }
 
@@ -79,12 +67,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 export default connect(mapStateToProps, {
-    followUser,
-    setUsers,
     toggleUsersPage,
     setTotalCount,
-    toggleFetching,
-    toggleFollowing,
 
-    getUsersTC
+    getUsersTC,
+    followUserTC,
+    unfollowUserTC,
 })(UsersContainer)
