@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {LoginValues} from '../bll/auth-reducer';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -34,6 +35,10 @@ export const profileAPI = {
 export const authAPI = {
     authMe () {
         return instance.get('auth/me')
+            .then(res=>res.data)
+    },
+    login(values:LoginValues) {
+        return instance.post('auth/login',{...values})
             .then(res=>res.data)
     }
 }

@@ -8,10 +8,11 @@ import {Dispatch} from 'redux';
 
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
+    isLoggedIn:boolean
 }
 
 type MapDispatchPropsType = {
-    updateMessageText: (newText: string) => void,
+    updateMessageText: (newText: string) => void
     sendMessage: () => void
 }
 
@@ -19,7 +20,8 @@ export type DialogsContainerType = MapDispatchPropsType & MapStatePropsType
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isLoggedIn:state.auth.isLoggedIn
     }
 }
 

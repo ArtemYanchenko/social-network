@@ -12,6 +12,7 @@ type PathParamsType = {
 
 type MapStateToPropsType = {
     profile: UserProfileType
+    isLoggedIn:boolean
 }
 type MapDispatchPropsType = {
     setUserProfileTC: (userId: string) => void
@@ -33,7 +34,8 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isLoggedIn:state.auth.isLoggedIn
 })
 
 

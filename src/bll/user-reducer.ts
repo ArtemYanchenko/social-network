@@ -30,7 +30,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
     users: [],
-    pageSize: 40,
+    pageSize: 30,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

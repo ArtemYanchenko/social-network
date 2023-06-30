@@ -5,7 +5,7 @@ import {AppStateType} from '../../bll/redux-store';
 import Header from './Header';
 
 type MapStateToPropsType= {
-    isLogedIn:boolean
+    isLoggedIn:boolean
     login:string | null
 }
 
@@ -22,11 +22,11 @@ class HeaderContainer extends React.Component<PropsType> {
     }
 
     render() {
-        return <Header login={this.props.login} />;
+        return <Header login={this.props.login} isLoggedIn={this.props.isLoggedIn}/>;
     }
 }
 
-const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLogedIn:state.auth.isLoggedIn , login:state.auth.login})
+const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLoggedIn:state.auth.isLoggedIn , login:state.auth.login})
 
 
 export default connect(mapStateToProps,{setUserData,authTC})(HeaderContainer)
