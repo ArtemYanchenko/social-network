@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Checkbox, Form, Input} from 'antd';
 import classes from './Login.module.css';
-import {LoginPropsType} from './LoginContainer';
-import {LoginValues} from '../../bll/auth-reducer';
+import {loginTC, LoginValues} from '../../bll/auth-reducer';
+import {InjectedFormProps, reduxForm} from 'redux-form';
 
-const Login = (props:LoginPropsType) => {
+type LoginFormOwnProp = {
+    captcha: string | null
+}
+
+const LoginForm:FC<InjectedFormProps<LoginValues, LoginFormOwnProp> & LoginFormOwnProp> = ({handleSubmit,error,captcha}) => {
 
     const onFinish = (values: LoginValues) => {
-       props.login(values)
         console.log(values)
-        // dispatch(loginTC(values))
+        loginTC(values)
     };
 
     return (
@@ -55,7 +58,12 @@ const Login = (props:LoginPropsType) => {
                 </Form.Item>
             </Form>
         </div>
+
     );
 };
 
-export default Login;
+
+
+export const LoginWithReduxForm = reduxForm<LoginValues, LoginFormOwnProp>({
+    form: 'login'
+})(LoginForm)

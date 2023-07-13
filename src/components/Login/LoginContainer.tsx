@@ -1,21 +1,36 @@
+import React from 'react';
 import {connect} from 'react-redux';
-import Login from './Login';
-import {AppDispatch, AppStateType} from '../../bll/redux-store';
+import {AppStateType} from '../../bll/redux-store';
 import {loginTC, LoginValues} from '../../bll/auth-reducer';
+import {Redirect} from 'react-router-dom';
+import {LoginWithReduxForm} from './LoginForm';
+import styles from './Login.module.css'
 
-const mapStateToProps = (state: AppStateType) => {
- return {}
+type MapStateToPropsType = {
+    isLoggedIn: boolean
 }
 
-const mapDispatchToProps = (dispatch: AppDispatch) => {
-    return {
-        login: (values: LoginValues) => {
-            dispatch(loginTC(values))
-        }
+type MapDispatchToPropsType = {
+    login: (values: LoginValues) => void
+}
+
+const mapStateToProps = (state: AppStateType):MapStateToPropsType => ({isLoggedIn:state.auth.isLoggedIn})
+
+
+type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+const Login = (props: LoginPropsType) => {
+    const onSubmit = (formData: LoginValues) => {
+        props.login(formData)
+        debugger
     }
-}
+    if (props.isLoggedIn) return <Redirect to={'/profile'}/>
 
-export type LoginPropsType = {} & { login: (values: LoginValues) => void }
+    return (
+        <div className={styles.loginWrapper}>
+            <LoginWithReduxForm onSubmit={onSubmit} captcha={''}/>
+        </div>
+    );
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, {login:loginTC})(Login)

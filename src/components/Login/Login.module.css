@@ -1,7 +1,9 @@
 .loginWrapper {
     display: flex;
-    margin-left: 30%;
     z-index: 100;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .loginForm {

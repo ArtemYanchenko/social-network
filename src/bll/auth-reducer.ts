@@ -88,5 +88,5 @@ export type LoginValues = {
     email: string
     password: string
     rememberMe?: boolean
-    captcha?: boolean
+    captcha?: string
 }
