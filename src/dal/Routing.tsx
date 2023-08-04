@@ -7,7 +7,7 @@ import News from '../components/News/News';
 import Music from '../components/Music/Music';
 import LoginContainer from '../components/Login/LoginContainer';
 
-const Routing = () => {
+export const Routing = () => {
     return (
         <Switch>
 
@@ -21,5 +21,3 @@ const Routing = () => {
         </Switch>
     );
 };
-
-export default Routing;

@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../bll/redux-store';
 import {loginTC, LoginValues} from '../../bll/auth-reducer';
 import {Redirect} from 'react-router-dom';
-import {LoginWithReduxForm} from './LoginForm';
 import styles from './Login.module.css'
+import {LoginWithReduxForm} from './LoginForm';
 
 type MapStateToPropsType = {
     isLoggedIn: boolean

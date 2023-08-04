@@ -9,7 +9,7 @@ import {AppStateType} from './bll/redux-store';
 import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
 import PreLoader from './components/common/PreLoader';
-import Routing from './dal/Routing';
+import {Routing} from './dal/Routing';
 
 
 class App extends Component<PropsType> {
@@ -42,7 +42,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 export const AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initialize: initializeApp}))(App)
-
 
 //types
 type MapStateToPropsType = {

@@ -1,71 +1,56 @@
-import React, {FC} from 'react';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Checkbox, Form, Input} from 'antd';
-import classes from './Login.module.css';
-import {loginTC, LoginValues} from '../../bll/auth-reducer';
+import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import {useDispatch} from 'react-redux';
+import classes from './login-form.module.css';
+import {required} from '../../utils/validator';
+import {CheckboxWrapper, createField, Input} from '../common/forms-controls';
+import { Form } from 'antd';
 
-type LoginFormOwnProp = {
+
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMy: boolean
+    captcha: string
+}
+type LoginFormOwnProps = {
     captcha: string | null
 }
-
-const LoginForm: FC<InjectedFormProps<LoginValues, LoginFormOwnProp> & LoginFormOwnProp> = ({
-                                                                                                handleSubmit,
-                                                                                                error,
-                                                                                                captcha
-                                                                                            }) => {
-
-    const dispatch = useDispatch()
-    const onFinishHandler = (values:LoginValues) => {
-        dispatch(loginTC(values))
-    }
+type LoginFormKeyValuesType = keyof FormDataType
+const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
+                                                                                                         handleSubmit,
+                                                                                                         error,
+                                                                                                         captcha
+                                                                                                     }) => {
     return (
-        <div className={classes.loginWrapper}>
-                <Form
-                    className={classes.loginForm}
-                    onFinish={onFinishHandler}
-                >
-                <Form.Item
-                    name="email"
-                    rules={[{required: true, message: 'Please input your Username!'}]}
-                >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" rev={undefined}/>}
-                           placeholder="Username"/>
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    rules={[{required: true, message: 'Please input your Password!'}]}
-                >
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" rev={undefined}/>}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
-                <Form.Item>
-                    <Form.Item name="rememberMe" valuePropName="checked" noStyle>
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
-                    <a className="login-form-forgot" href="">
-                        Forgot password
-                    </a>
-                </Form.Item>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className={classes.loginFormButton}>
-                        Log in
-                    </Button>
-                    Or <a href="">register now!</a>
-                </Form.Item>
-                </Form>
-        </div>
-
+        <form onSubmit={handleSubmit} className={classes.formControl}>
+            <Form.Item className={classes.formLabel}>
+                <p>
+                    To log in get registered <a href={'https://social-network.samuraijs.com/'}
+                                                target={'_blank'} rel="noreferrer">here</a>
+                </p>
+                <p>
+                    or use common test account credentials:
+                </p>
+                <p> Email: free@samuraijs.com
+                </p>
+                <p>
+                    Password: free
+                </p>
+            </Form.Item>
+            <div className={classes.email}>
+                {createField<LoginFormKeyValuesType>('Email', 'email', [required], Input)}
+            </div>
+            <div className={classes.password}>
+                {createField<LoginFormKeyValuesType>('Password', 'password', [required], Input, {type: 'password'})}
+            </div>
+            <div className={classes.rememberMy}>
+                {createField<LoginFormKeyValuesType>('', 'rememberMy', [], CheckboxWrapper, {type: 'checkbox'}, 'remember my')}
+            </div>
+            {captcha && <img className={classes.captcha} src={captcha} alt={'captcha'}/>}
+            {captcha && createField<LoginFormKeyValuesType>('Symbols from image', 'captcha', [required], Input)}
+            {error && <div className={classes.formSummaryError}>{error}</div>}
+            <button className={classes.btn}>Login</button>
+        </form>
     );
 };
-
-
-export const LoginWithReduxForm = reduxForm<LoginValues, LoginFormOwnProp>({
-    form: 'login'
-})(LoginForm)
+export const LoginWithReduxForm = reduxForm<FormDataType, LoginFormOwnProps>({form: 'login'})(LoginForm)
