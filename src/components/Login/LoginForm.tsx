@@ -1,6 +1,6 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import classes from './login-form.module.css';
+import classes from './forms-controls.module.css';
 import {required} from '../../utils/validator';
 import {CheckboxWrapper, createField, Input} from '../common/forms-controls';
 import { Form } from 'antd';

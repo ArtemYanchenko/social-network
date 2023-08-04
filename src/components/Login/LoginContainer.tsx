@@ -21,9 +21,9 @@ type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: LoginValues) => {
-        console.log(formData.email, formData.password, formData.rememberMe, formData.captcha)
-        // props.login(formData.email, formData.password, formData.rememberMy, formData.captcha)
+        props.login(formData)
     }
+
     if (props.isLoggedIn) return <Redirect to={'/profile'}/>
 
     return (
