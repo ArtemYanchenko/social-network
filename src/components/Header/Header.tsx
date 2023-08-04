@@ -8,13 +8,13 @@ import {CustomButton} from '../common/custom-button/custom-button';
 type Props = {
     login: string | null
     isLoggedIn: boolean
+    logoutTC:()=>void
 }
 
-const Header: FC<Props> = ({login, isLoggedIn}) => {
+const Header: FC<Props> = ({login, isLoggedIn,logoutTC}) => {
 
     const onLoginHandler = () => {
-        debugger;
-        <Redirect to={'login'}/>
+        logoutTC()
 
     }
 

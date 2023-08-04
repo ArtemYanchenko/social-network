@@ -18,15 +18,18 @@ const initialState: InitialStateType = {
     isLoggedIn: false
 }
 
-type ActionsTypes = SetUserDataACType | SetLogedInACType
+type ActionsTypes = SetUserDataType | SetLoginType | SetLogoutType
 
 export const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'SET-USER-DATA': {
             return {...state, ...action.payload.data}
         }
-        case 'SET-LOGEDIN': {
+        case 'SET-LOGIN': {
             return {...state, isLoggedIn: action.payload.value}
+        }
+        case 'SET-LOGOUT':{
+            return {...state,isLoggedIn:false}
         }
         default:
             return state
@@ -35,7 +38,7 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
 }
 
 
-type SetUserDataACType = ReturnType<typeof setUserData>
+type SetUserDataType = ReturnType<typeof setUserData>
 export const setUserData = (data: UserInfoType) => {
     return {
         type: 'SET-USER-DATA',
@@ -45,13 +48,20 @@ export const setUserData = (data: UserInfoType) => {
     } as const
 }
 
-type SetLogedInACType = ReturnType<typeof setLogedIn>
-export const setLogedIn = (value: boolean) => {
+type SetLoginType = ReturnType<typeof setLogin>
+export const setLogin = (value: boolean) => {
     return {
-        type: 'SET-LOGEDIN',
+        type: 'SET-LOGIN',
         payload: {
             value
         }
+    } as const
+}
+
+type SetLogoutType = ReturnType<typeof setLogout>
+export const setLogout = () => {
+    return {
+        type: 'SET-LOGOUT',
     } as const
 }
 
@@ -61,7 +71,7 @@ export const authTC = () => (dispatch: AppDispatch) => {
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(setUserData(data.data))
-                dispatch(setLogedIn(true))
+                dispatch(setLogin(true))
             }
         })
 }
@@ -71,8 +81,7 @@ export const loginTC = (values: LoginValues) => (dispatch: AppDispatch) => {
     authAPI.login(values)
         .then(data => {
             if (data.resultCode === 0) {
-                debugger
-                dispatch(setLogedIn(true))
+                dispatch(setLogin(true))
             }
             return data
         })
@@ -82,6 +91,15 @@ export const loginTC = (values: LoginValues) => (dispatch: AppDispatch) => {
             }
         })
 };
+
+export const logoutTC = () =>(dispatch:AppDispatch)=>{
+    authAPI.logout()
+        .then(data=>{
+            if(data.resultCode === 0) {
+                dispatch(setLogout())
+            }
+        })
+}
 
 
 export type LoginValues = {

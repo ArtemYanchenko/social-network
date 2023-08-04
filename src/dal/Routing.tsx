@@ -10,8 +10,7 @@ import LoginContainer from '../components/Login/LoginContainer';
 export const Routing = () => {
     return (
         <Switch>
-
-            <Route path={`/`} component={ProfileContainer}/>
+            <Route exact path={`/`} component={ProfileContainer}/>
             <Route path={`/profile/:userId?`} component={ProfileContainer}/>
             <Route path={'/dialogs'} component={DialogsContainer}/>
             <Route path={'/users'} component={UsersContainer}/>
