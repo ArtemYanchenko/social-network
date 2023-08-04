@@ -7,11 +7,12 @@ import {CustomButton} from '../common/custom-button/custom-button';
 
 type Props = {
     login: string | null
+    photo:string | null
     isLoggedIn: boolean
     logoutTC:()=>void
 }
 
-const Header: FC<Props> = ({login, isLoggedIn,logoutTC}) => {
+const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
 
     const onLoginHandler = () => {
         logoutTC()
@@ -33,7 +34,9 @@ const Header: FC<Props> = ({login, isLoggedIn,logoutTC}) => {
             <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/124/124019.png" alt="logo"/></a>
             <input type="text" placeholder={'Search'}/>
             {isLoggedIn ? <Dropdown overlay={widgetMenu}>
-                    <Avatar icon={<UserOutlined rev={undefined}/>}/>
+                { photo ? <img src={photo} alt="avatarSmall"/>
+                  :    <Avatar icon={<UserOutlined rev={undefined}/>}/>
+                }
                 </Dropdown>
                 : <Avatar icon={<UserOutlined rev={undefined}/>}/>}
         </header>

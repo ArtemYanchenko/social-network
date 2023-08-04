@@ -7,15 +7,16 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 
 type PathParamsType = {
-    userId: string
+    id: string
 }
 
 type MapStateToPropsType = {
     profile: UserProfileType
     isLoggedIn:boolean
+    id:number | null
 }
 type MapDispatchPropsType = {
-    setUserProfileTC: (userId: string) => void
+    setUserProfileTC: (id: string) => void
 }
 
 type PropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & MapDispatchPropsType
@@ -24,8 +25,11 @@ type PropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & Map
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        this.props.setUserProfileTC(userId)
+        let id = this.props.match.params.id;
+        if(!id){
+            id = String(this.props.id)
+        }
+        this.props.setUserProfileTC(id)
     }
 
     render() {
@@ -35,7 +39,8 @@ class ProfileContainer extends React.Component<PropsType> {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    isLoggedIn:state.auth.isLoggedIn
+    isLoggedIn:state.auth.isLoggedIn,
+    id:state.auth.id
 })
 
 

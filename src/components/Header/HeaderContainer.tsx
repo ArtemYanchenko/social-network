@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {authTC, logoutTC, setUserData, UserInfoType} from '../../bll/auth-reducer';
+import {authTC, logoutTC} from '../../bll/auth-reducer';
 import {AppStateType} from '../../bll/redux-store';
 import Header from './Header';
 
 type MapStateToPropsType= {
     isLoggedIn:boolean
     login:string | null
+    photo:string | null
 }
 
 type MapDispatchToPropsType = {
@@ -22,11 +23,11 @@ class HeaderContainer extends React.Component<PropsType> {
     }
 
     render() {
-        return <Header login={this.props.login} isLoggedIn={this.props.isLoggedIn} logoutTC={this.props.logoutTC}/>;
+        return <Header login={this.props.login} photo={this.props.photo} isLoggedIn={this.props.isLoggedIn} logoutTC={this.props.logoutTC}/>;
     }
 }
 
-const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLoggedIn:state.auth.isLoggedIn , login:state.auth.login})
+const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLoggedIn:state.auth.isLoggedIn , login:state.auth.login, photo:state.profilePage.profile.photos.small})
 
 
 export default connect(mapStateToProps,{authTC,logoutTC})(HeaderContainer)

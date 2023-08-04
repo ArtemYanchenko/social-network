@@ -50,8 +50,8 @@ type MapDispatchToProps = {
     toggleUsersPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
 
-    followUserTC: (userId: number) => void
-    unfollowUserTC: (userId: number) => void
+    followUserTC: (id: number) => void
+    unfollowUserTC: (id: number) => void
     getUsersTC:(pageSize: number, currentPage: number) => void
 }
 

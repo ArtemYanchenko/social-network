@@ -20,7 +20,7 @@ const initialState = {
         {id: 1, likesCount: 5, message: 'hi, my first post'},
         {id: 2, likesCount: 10, message: 'i am fine'},
     ],
-    profile: {   userId: 2,
+    profile: {   id: 0,
         lookingForAJob: true,
         lookingForAJobDescription: 'lookingForAJobDescription',
         fullName: 'Artem Yanchenko',
@@ -80,15 +80,16 @@ export const addPostAC = () => {
 export const setUserProfile = (profile: UserProfileType) => ({type: 'SET-USER', profile} as const)
 
 
-export const setUserProfileTC = (userId:string) => (dispatch:Dispatch) => {
-    profileAPI.getProfilePage(userId)
+export const setUserProfileTC = (id:string) => (dispatch:Dispatch) => {
+    debugger
+    profileAPI.getProfilePage(id)
         .then(data => {
             dispatch(setUserProfile(data))
         })
 }
 
 export type UserProfileType = {
-    userId: number;
+    id: number;
     lookingForAJob: boolean;
     lookingForAJobDescription: string;
     fullName: string;

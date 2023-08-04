@@ -12,37 +12,39 @@ export const usersAPI = {
         return instance.get(`users?count=${pageSize}&page=${currentPage}`)
             .then(res => res.data);
     },
-    followUser(userId:number){
-        return instance.post(`follow/${userId}`,{})
-            .then(res=>res.data)
+    followUser(id: number) {
+        return instance.post(`follow/${id}`, {})
+            .then(res => res.data)
     },
-    unfollowUser(userId:number){
-        return instance.delete(`follow/${userId}`)
-            .then(res=>res.data)
+    unfollowUser(id: number) {
+        return instance.delete(`follow/${id}`)
+            .then(res => res.data)
     }
 
 }
 
 
 export const profileAPI = {
-    getProfilePage (userId:string){
-        return instance.get(`profile/${userId}`)
-            .then(res=>res.data)
+    getProfilePage(id: string) {
+        return instance.get(`profile/${id}`)
+            .then(res => res.data)
     }
 }
 
 
 export const authAPI = {
-    authMe () {
+    authMe() {
+        debugger
         return instance.get('auth/me')
-            .then(res=>res.data)
+            .then(res => res.data)
+
     },
-    login(values:LoginValues) {
-        return instance.post('auth/login',{...values})
-            .then(res=>res.data)
+    login(values: LoginValues) {
+        return instance.post('auth/login', {...values})
+            .then(res => res.data)
     },
-    logout(){
+    logout() {
         return instance.delete('auth/login')
-            .then(res=>res.data)
+            .then(res => res.data)
     }
 }

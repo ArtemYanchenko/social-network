@@ -1,8 +1,9 @@
 import {authAPI} from '../dal/api';
 import {AppDispatch} from './redux-store';
+import {UsersType} from './user-reducer';
 
 export type UserInfoType = {
-    userId: number | null
+    id: number | null
     email: string | null
     login: string | null
 }
@@ -12,7 +13,7 @@ type InitialStateType = UserInfoType & {
 
 
 const initialState: InitialStateType = {
-    userId: null,
+    id: null,
     email: null,
     login: null,
     isLoggedIn: false
@@ -23,6 +24,7 @@ type ActionsTypes = SetUserDataType | SetLoginType | SetLogoutType
 export const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'SET-USER-DATA': {
+            debugger
             return {...state, ...action.payload.data}
         }
         case 'SET-LOGIN': {
@@ -39,7 +41,7 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
 
 
 type SetUserDataType = ReturnType<typeof setUserData>
-export const setUserData = (data: UserInfoType) => {
+export const setUserData = (data: UsersType) => {
     return {
         type: 'SET-USER-DATA',
         payload: {
@@ -69,6 +71,7 @@ export const setLogout = () => {
 export const authTC = () => (dispatch: AppDispatch) => {
     authAPI.authMe()
         .then(data => {
+            debugger
             if (data.resultCode === 0) {
                 dispatch(setUserData(data.data))
                 dispatch(setLogin(true))

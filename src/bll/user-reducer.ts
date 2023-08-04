@@ -63,7 +63,7 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
         case 'TOGGLE-FOLLOWING': {
             return {
                 ...state,
-                followingInProgress: action.payload.isFetching ? [...state.followingInProgress, action.payload.userId] : state.followingInProgress.filter(el => action.payload.userId !== el)
+                followingInProgress: action.payload.isFetching ? [...state.followingInProgress, action.payload.id] : state.followingInProgress.filter(el => action.payload.id !== el)
             }
         }
         default:
@@ -125,11 +125,11 @@ export const toggleFetching = (checked: boolean) => {
 }
 
 type ToggleFollowingACType = ReturnType<typeof toggleFollowing>
-export const toggleFollowing = (userId: number, isFetching: boolean) => {
+export const toggleFollowing = (id: number, isFetching: boolean) => {
     return {
         type: 'TOGGLE-FOLLOWING',
         payload: {
-            userId,
+            id,
             isFetching
         }
     } as const
@@ -145,24 +145,24 @@ export const getUsersTC = (pageSize: number, currentPage: number) => (dispatch: 
         })
 }
 
-export const followUserTC = (userId:number) => (dispatch:Dispatch) => {
-    dispatch(toggleFollowing(userId, true));
-    usersAPI.followUser(userId)
+export const followUserTC = (id:number) => (dispatch:Dispatch) => {
+    dispatch(toggleFollowing(id, true));
+    usersAPI.followUser(id)
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(followUser(userId, true));
+                dispatch(followUser(id, true));
             }
-            dispatch(toggleFollowing(userId, false))
+            dispatch(toggleFollowing(id, false))
         })
 }
 
-export const unfollowUserTC = (userId:number) => (dispatch:Dispatch) => {
-    dispatch(toggleFollowing(userId, true));
-    usersAPI.unfollowUser(userId)
+export const unfollowUserTC = (id:number) => (dispatch:Dispatch) => {
+    dispatch(toggleFollowing(id, true));
+    usersAPI.unfollowUser(id)
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(followUser(userId, true));
+                dispatch(followUser(id, true));
             }
-            dispatch(toggleFollowing(userId, false))
+            dispatch(toggleFollowing(id, false))
         })
 }

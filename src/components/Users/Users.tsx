@@ -14,8 +14,8 @@ type PropsType = {
 
     toggleUsersPage: (currentPage: number) => void
     onChangePage: (page: number) => void
-    followUserTC: (userId: number) => void
-    unfollowUserTC: (userId: number) => void
+    followUserTC: (id: number) => void
+    unfollowUserTC: (id: number) => void
 }
 
 const Users = (props: PropsType) => {

@@ -9,7 +9,7 @@ import {AppStateType} from './bll/redux-store';
 import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
 import PreLoader from './components/common/PreLoader';
-import {Routing} from './dal/Routing';
+import {Routing} from './components/common/Routing';
 
 
 class App extends Component<PropsType> {
@@ -21,7 +21,6 @@ class App extends Component<PropsType> {
         if (!this.props.initialized) {
             return <PreLoader/>
         }
-
         return (
             <div className="App">
                     <HeaderContainer/>
