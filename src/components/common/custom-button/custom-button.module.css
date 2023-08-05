@@ -1,5 +1,5 @@
-.button {
-    background: #dee5eb;
+.customButton {
+    background-color: #dee5eb;
     color: #5b90c5;
     border: 0 solid;
     border-radius: 8px;
@@ -11,4 +11,12 @@
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+.customButton:hover{
+    background-color: #d7e0f3;
+}
+
+.customButton:active{
+    border-color: #b9c9ee;
 }

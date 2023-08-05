@@ -11,12 +11,12 @@ export const Header: FC<Props> = ({login, photo, isLoggedIn, logoutTC}) => {
     }
 
     const widgetMenu = (
-        <Menu>
+        <Menu className={classes.menuWrapper}>
             <Menu.Item key={1}>
                 {login}
             </Menu.Item>
             <Menu.Item key={2} onClick={onLoginHandler}>
-                <CustomButton name="logout"/>
+                <CustomButton name="logout" width='110px'/>
             </Menu.Item>
         </Menu>
     );

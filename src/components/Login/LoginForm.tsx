@@ -1,9 +1,10 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import classes from './forms-controls.module.css';
 import {required} from '../../utils/validator';
+import classes from './Login.module.css'
 import {CheckboxWrapper, createField, Input} from './forms-controls';
-import {Form} from 'antd';
+import { Form} from 'antd';
+import {CustomButton} from '../common/custom-button/custom-button';
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
                                                                                                          handleSubmit,
@@ -32,13 +33,13 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
             <div className={classes.password}>
                 {createField<LoginFormKeyValuesType>('Password', 'password', [required], Input, {type: 'password'})}
             </div>
-            <div className={classes.rememberMy}>
-                {createField<LoginFormKeyValuesType>('', 'rememberMy', [], CheckboxWrapper, {type: 'checkbox'}, 'remember my')}
+            <div className={classes.rememberMe}>
+                {createField<LoginFormKeyValuesType>('', 'rememberMe', [], CheckboxWrapper, {type: 'checkbox'}, 'remember me')}
             </div>
             {captcha && <img className={classes.captcha} src={captcha} alt={'captcha'}/>}
             {captcha && createField<LoginFormKeyValuesType>('Symbols from image', 'captcha', [required], Input)}
             {error && <div className={classes.formSummaryError}>{error}</div>}
-            <button className={classes.btn}>Login</button>
+            <CustomButton name='Login'/>
         </form>
     );
 };
@@ -48,7 +49,7 @@ export const LoginWithReduxForm = reduxForm<FormDataType, LoginFormOwnProps>({fo
 export type FormDataType = {
     email: string
     password: string
-    rememberMy: boolean
+    rememberMe: boolean
     captcha: string
 }
 type LoginFormOwnProps = {
