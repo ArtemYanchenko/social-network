@@ -17,8 +17,8 @@ type InitialStateType = {
 const initialState = {
     messageForNewPost: '',
     postsData: [
-        {id: 1, likesCount: 5, message: 'hi, my first post'},
-        {id: 2, likesCount: 10, message: 'i am fine'},
+        {id: 1, likesCount: 8, message: 'TypeScript is a programming language introduced by Microsoft in 2012 and positioned as a web application development tool that extends the capabilities of JavaScript. The developer of the TypeScript language is Anders Hejlsberg, who previously created Turbo Pascal, Delphi, and C#.'},
+        {id: 2, likesCount: 10, message: 'React can be used to develop single page and mobile applications. Its goal is to provide high development speed, simplicity and scalability. As a library for developing user interfaces, React is often used with other libraries such as MobX, Redux, and GraphQL.'},
     ],
     profile: {
         id: 0,

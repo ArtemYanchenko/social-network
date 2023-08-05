@@ -14,8 +14,8 @@ const ProfileInfo = (props: PropsType) => {
                 : <div className={classes.descriptionBlock}>
                     <img className={classes.mainImg}
                          alt={'mainPhoto'}
-                         src={props.profile.photos.small !== null
-                             ? props.profile.photos.small
+                         src={props.profile.photos.large !== null
+                             ? props.profile.photos.large
                              : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
                     />
                     <div>
