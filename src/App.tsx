@@ -1,6 +1,6 @@
 import React, {Component, ComponentType} from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import {Navbar} from './components/Navbar/Navbar';
 import {withRouter} from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';

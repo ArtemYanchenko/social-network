@@ -6,18 +6,7 @@ import {Redirect} from 'react-router-dom';
 import styles from './Login.module.css'
 import {LoginWithReduxForm} from './LoginForm';
 
-type MapStateToPropsType = {
-    isLoggedIn: boolean
-}
-
-type MapDispatchToPropsType = {
-    login: (values: LoginValues) => void
-}
-
 const mapStateToProps = (state: AppStateType):MapStateToPropsType => ({isLoggedIn:state.auth.isLoggedIn})
-
-
-type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: LoginValues) => {
@@ -34,3 +23,13 @@ const Login = (props: LoginPropsType) => {
 };
 
 export default connect(mapStateToProps, {login:loginTC})(Login)
+
+//types
+type MapStateToPropsType = {
+    isLoggedIn: boolean
+}
+
+type MapDispatchToPropsType = {
+    login: (values: LoginValues) => void
+}
+type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType

@@ -4,15 +4,7 @@ import {Avatar, Dropdown, Menu} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import {CustomButton} from '../common/custom-button/custom-button';
 
-type Props = {
-    login: string | null
-    photo:string | null
-    isLoggedIn: boolean
-    logoutTC:()=>void
-}
-
-export const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
-
+export const Header: FC<Props> = ({login, photo, isLoggedIn, logoutTC}) => {
     const onLoginHandler = () => {
         logoutTC()
 
@@ -33,11 +25,19 @@ export const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
             <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/124/124019.png" alt="logo"/></a>
             <input type="text" placeholder={'Search'}/>
             {isLoggedIn ? <Dropdown overlay={widgetMenu}>
-                { photo ? <img src={photo} alt="avatarSmall"/>
-                  :    <Avatar icon={<UserOutlined rev={undefined}/>}/>
-                }
+                    {photo ? <img src={photo} alt="avatarSmall"/>
+                        : <Avatar icon={<UserOutlined rev={undefined}/>}/>
+                    }
                 </Dropdown>
                 : <Avatar icon={<UserOutlined rev={undefined}/>}/>}
         </header>
     );
 };
+
+//types
+type Props = {
+    login: string | null
+    photo: string | null
+    isLoggedIn: boolean
+    logoutTC: () => void
+}

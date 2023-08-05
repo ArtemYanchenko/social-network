@@ -2,20 +2,9 @@ import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import classes from './forms-controls.module.css';
 import {required} from '../../utils/validator';
-import {CheckboxWrapper, createField, Input} from '../common/forms-controls';
-import { Form } from 'antd';
+import {CheckboxWrapper, createField, Input} from './forms-controls';
+import {Form} from 'antd';
 
-
-export type FormDataType = {
-    email: string
-    password: string
-    rememberMy: boolean
-    captcha: string
-}
-type LoginFormOwnProps = {
-    captcha: string | null
-}
-type LoginFormKeyValuesType = keyof FormDataType
 const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
                                                                                                          handleSubmit,
                                                                                                          error,
@@ -54,3 +43,15 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
     );
 };
 export const LoginWithReduxForm = reduxForm<FormDataType, LoginFormOwnProps>({form: 'login'})(LoginForm)
+
+//types
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMy: boolean
+    captcha: string
+}
+type LoginFormOwnProps = {
+    captcha: string | null
+}
+type LoginFormKeyValuesType = keyof FormDataType
