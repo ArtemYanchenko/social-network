@@ -3,3 +3,14 @@
     background-color: white;
     border-radius: 12px;
 }
+
+.customInput {
+    padding-left: 35px;
+    box-sizing: border-box;
+    line-height: 28px;
+    width: 230px;
+    height: 32px;
+    border-radius: 8px;
+    border: 0;
+    background-color: #edeef0;
+}

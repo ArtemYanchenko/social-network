@@ -15,6 +15,7 @@
 
 .customButton:hover{
     background-color: #d7e0f3;
+    cursor: pointer;
 }
 
 .customButton:active{

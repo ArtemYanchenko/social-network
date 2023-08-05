@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import classes from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../bll/profile-reducer';
 import PreLoader from '../../common/PreLoader';
+import {CustomButton} from '../../common/custom-button/custom-button';
 
 type Props = {
     profile: UserProfileType
@@ -24,8 +25,10 @@ export const ProfileInfo:FC<Props> = ({profile}) => {
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
-                <a href='#'>Edit profile</a>
-                <a href='#'>More</a>
+                {/*<a href='#'>Edit profile</a>*/}
+                <CustomButton name='Edit profile'/>
+                <CustomButton name='More'/>
+                {/*<a href='#'>More</a>*/}
             </div>
         </div>
     );
