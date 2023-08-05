@@ -21,8 +21,8 @@ export type DialogsPageType = {
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostNextAC>
-    | ReturnType<typeof addMessageAC>
-    | ReturnType<typeof updateMessageTextAC>
+    | ReturnType<typeof addMessage>
+    | ReturnType<typeof updateMessageText>
 
 
 const initialState = {
@@ -71,7 +71,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
 }
 
 
-export const updateMessageTextAC = (newTextMessage: string) => {
+export const updateMessageText = (newTextMessage: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE-TEXT',
         newTextMessage
@@ -79,7 +79,7 @@ export const updateMessageTextAC = (newTextMessage: string) => {
 }
 
 
-export const addMessageAC = () => {
+export const addMessage = () => {
     return {
         type: 'ADD-MESSAGE'
     } as const

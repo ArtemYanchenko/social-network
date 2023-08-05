@@ -1,4 +1,4 @@
-import {addMessageAC, updateMessageTextAC} from './dialogs-reducer';
+import {addMessage, updateMessageText} from './dialogs-reducer';
 import {Dispatch} from 'redux';
 import {profileAPI} from '../dal/api';
 
@@ -44,8 +44,8 @@ const initialState = {
 type ActionsTypes =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostNextAC>
-    | ReturnType<typeof addMessageAC>
-    | ReturnType<typeof updateMessageTextAC>
+    | ReturnType<typeof addMessage>
+    | ReturnType<typeof updateMessageText>
     | ReturnType<typeof setUserProfile>
 
 

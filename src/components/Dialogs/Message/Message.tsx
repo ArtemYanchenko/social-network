@@ -1,22 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './../Dialogs.module.css';
-import {Simulate} from 'react-dom/test-utils';
 
-
-type PropsType = {
+type Props = {
     message: string
 }
 
-const Message = (props: PropsType) => {
+export const Message:FC<Props> = ({message}) => {
     return (
             <div className={classes.message}>
-                {props.message}
+                {message}
             </div>
 
     )
         ;
 };
 
-export default Message;
 
 

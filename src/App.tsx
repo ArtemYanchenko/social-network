@@ -11,7 +11,6 @@ import {initializeApp} from './bll/app-reducer';
 import PreLoader from './components/common/PreLoader';
 import {Routing} from './components/common/Routing';
 
-
 class App extends Component<PropsType> {
     componentDidMount() {
         this.props.initialize();

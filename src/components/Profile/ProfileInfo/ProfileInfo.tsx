@@ -1,26 +1,26 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../bll/profile-reducer';
 import PreLoader from '../../common/PreLoader';
 
-type PropsType = {
+type Props = {
     profile: UserProfileType
 }
 
-const ProfileInfo = (props: PropsType) => {
+export const ProfileInfo:FC<Props> = ({profile}) => {
     return (
         <div className={classes.profileInfoBlock}>
-            {!props.profile ? <PreLoader/>
+            {!profile ? <PreLoader/>
                 : <div className={classes.descriptionBlock}>
                     <img className={classes.mainImg}
                          alt={'mainPhoto'}
-                         src={props.profile.photos.large !== null
-                             ? props.profile.photos.large
+                         src={profile.photos.large !== null
+                             ? profile.photos.large
                              : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
                     />
                     <div>
-                        <p className={classes.userName}>{props.profile.fullName}</p>
-                        <p>{props.profile.contacts.vk}</p>
+                        <p className={classes.userName}>{profile.fullName}</p>
+                        <p>{profile.contacts.vk}</p>
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
@@ -30,5 +30,3 @@ const ProfileInfo = (props: PropsType) => {
         </div>
     );
 };
-
-export default ProfileInfo;
