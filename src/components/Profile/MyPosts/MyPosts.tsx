@@ -1,26 +1,25 @@
-import React, {ChangeEvent, createRef, useState} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import classes from './MyPosts.module.css';
-import Post from './Post/Post';
+import {Post} from './Post/Post';
 import {MyPostsContainerPropsType} from './MyPostsContainer';
 
 
-
-const MyPosts = (props: MyPostsContainerPropsType ) => {
+export const MyPosts:FC<MyPostsContainerPropsType> = ({addPost,updatePostText,postsData,messageForNewPost,photo} ) => {
 
     const addPostHandler = () => {
-        props.addPost();
+        addPost();
     }
 
     const updatePostTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatePostText(e.currentTarget.value)
+        updatePostText(e.currentTarget.value)
     }
 
-    const mappedPosts = props.postsData.map((p) => <Post message={p.message} likeCount={p.likesCount}/>)
+    const mappedPosts = postsData.map((p) => <Post message={p.message} likeCount={p.likesCount} photo={photo}/>)
 
     return (
         <div className={classes.postsBlock}>
             <h3> My Posts </h3>
-            <textarea value={props.messageForNewPost}
+            <textarea value={messageForNewPost}
                       onChange={updatePostTextHandler}
             />
             <button onClick={addPostHandler}>add post</button>
@@ -29,5 +28,3 @@ const MyPosts = (props: MyPostsContainerPropsType ) => {
 
     );
 };
-
-export default MyPosts;

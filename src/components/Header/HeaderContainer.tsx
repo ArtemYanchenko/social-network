@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {authTC, logoutTC} from '../../bll/auth-reducer';
 import {AppStateType} from '../../bll/redux-store';
-import Header from './Header';
+import {Header} from './Header';
 
 type MapStateToPropsType= {
     isLoggedIn:boolean
@@ -27,7 +27,7 @@ class HeaderContainer extends React.Component<PropsType> {
     }
 }
 
-const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLoggedIn:state.auth.isLoggedIn , login:state.auth.login, photo:state.profilePage.profile.photos.small})
+const mapStateToProps = (state:AppStateType):MapStateToPropsType =>({isLoggedIn:state.auth.isLoggedIn , login:state.auth.login, photo:state.auth.photo})
 
 
 export default connect(mapStateToProps,{authTC,logoutTC})(HeaderContainer)

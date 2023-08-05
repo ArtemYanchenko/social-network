@@ -1,26 +1,9 @@
 import React from 'react';
-import Profile from './Profile';
+import {Profile} from './Profile';
 import {connect} from 'react-redux';
 import {setUserProfileTC, UserProfileType} from '../../bll/profile-reducer';
 import {AppStateType} from '../../bll/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-
-
-type PathParamsType = {
-    id: string
-}
-
-type MapStateToPropsType = {
-    profile: UserProfileType
-    isLoggedIn:boolean
-    id:number | null
-}
-type MapDispatchPropsType = {
-    setUserProfileTC: (id: string) => void
-}
-
-type PropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & MapDispatchPropsType
-
 
 class ProfileContainer extends React.Component<PropsType> {
 
@@ -46,4 +29,20 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 const ProfileContainterWithRouter = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, ({setUserProfileTC}))(ProfileContainterWithRouter)
+export default connect(mapStateToProps, ({setUserProfileTC}))(ProfileContainterWithRouter);
+
+//types
+type PathParamsType = {
+    id: string
+}
+
+type MapStateToPropsType = {
+    profile: UserProfileType
+    isLoggedIn:boolean
+    id:number | null
+}
+type MapDispatchPropsType = {
+    setUserProfileTC: (id: string) => void
+}
+
+type PropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & MapDispatchPropsType

@@ -10,8 +10,8 @@ export type PostsDataType = {
 
 type InitialStateType = {
     messageForNewPost: string
-    postsData: PostsDataType[],
-    profile:UserProfileType
+    postsData: PostsDataType[]
+    profile: UserProfileType
 }
 
 const initialState = {
@@ -20,10 +20,11 @@ const initialState = {
         {id: 1, likesCount: 5, message: 'hi, my first post'},
         {id: 2, likesCount: 10, message: 'i am fine'},
     ],
-    profile: {   id: 0,
+    profile: {
+        id: 0,
         lookingForAJob: true,
         lookingForAJobDescription: 'lookingForAJobDescription',
-        fullName: 'Artem Yanchenko',
+        fullName: '',
         contacts: {
             github: 'github',
             vk: 'vk',
@@ -36,7 +37,8 @@ const initialState = {
         photos: {
             small: null,
             large: null,
-        }}
+        }
+    }
 }
 
 type ActionsTypes =
@@ -56,7 +58,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             const newPost: PostsDataType = {id: 1, likesCount: 0, message: state.messageForNewPost};
             return {...state, postsData: [newPost, ...state.postsData], messageForNewPost: ''};
         case 'SET-USER': {
-            return {...state,profile:action.profile}
+            return {...state, profile: {...action.profile}}
         }
         default:
             return state;
@@ -80,11 +82,12 @@ export const addPostAC = () => {
 export const setUserProfile = (profile: UserProfileType) => ({type: 'SET-USER', profile} as const)
 
 
-export const setUserProfileTC = (id:string) => (dispatch:Dispatch) => {
+export const setUserProfileTC = (id: string) => (dispatch: Dispatch) => {
     debugger
     profileAPI.getProfilePage(id)
         .then(data => {
             dispatch(setUserProfile(data))
+            // dispatch(setUserPhoto(data.photos.large))
         })
 }
 

@@ -1,20 +1,21 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {UserProfileType} from '../../bll/profile-reducer';
 
-type PropsType = {
-    profile:UserProfileType
-}
 
-const Profile = (props:PropsType) => {
+
+export const Profile:FC<Props> = ({profile}) => {
     return (
         <div className={classes.profileContent}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={profile}/>
             <MyPostsContainer/>
         </div>
     );
 };
 
-export default Profile;
+//types
+type Props = {
+    profile:UserProfileType
+}

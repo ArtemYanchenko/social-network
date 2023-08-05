@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import classes from './Header.module.css';
-import {Redirect} from 'react-router-dom';
 import {Avatar, Dropdown, Menu} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import {CustomButton} from '../common/custom-button/custom-button';
@@ -12,7 +11,7 @@ type Props = {
     logoutTC:()=>void
 }
 
-const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
+export const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
 
     const onLoginHandler = () => {
         logoutTC()
@@ -42,5 +41,3 @@ const Header: FC<Props> = ({login,photo, isLoggedIn,logoutTC}) => {
         </header>
     );
 };
-
-export default Header;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ComponentType} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import {withRouter} from 'react-router-dom';
@@ -38,7 +38,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isLoggedIn: state.auth.isLoggedIn
 })
 
-export const AppContainer = compose<React.ComponentType>(
+export const AppContainer = compose<ComponentType>(
     withRouter,
     connect(mapStateToProps, {initialize: initializeApp}))(App)
 
