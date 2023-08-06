@@ -1,9 +1,9 @@
 import React from 'react';
 import {addPostAC, PostsDataType, updateNewPostNextAC} from '../../../bll/profile-reducer';
-import {MyPosts, MyPostsWithReduxForm} from './MyPosts';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../bll/redux-store';
 import {Dispatch} from 'redux';
+import {MyPosts} from './MyPosts';
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 }
 
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsWithReduxForm)
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 
 //types

@@ -1,8 +1,40 @@
 .postsBlock {
-    padding: 10px;
-    background-color: white;
+    /*padding: 10px;*/
+    background-color: transparent;
     border-radius: 12px;
 }
+
+.addPostFormWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    height: 52px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding:0px 10px;
+    margin-bottom: 20px;
+}
+
+.addPostFormWrapper input {
+    width: 90%;
+    height: 90%;
+    border: 0px;
+    padding-left: 20px;
+    outline:none;
+}
+
+/*.addPostFormWrapper input:focus{*/
+/*    border: 0px;*/
+/*}*/
+
+
+.postsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 
 .customInput {
     padding-left: 35px;
@@ -14,3 +46,4 @@
     border: 0;
     background-color: #edeef0;
 }
+

@@ -1,8 +1,8 @@
 .profileInfoBlock {
-    width: 100%;
+    width: 70%;
     background-color: white;
     border-radius: 12px;
-    padding: 20px 0;
+    padding: 10px;
     margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
