@@ -11,17 +11,18 @@
     align-items: center;
     height: 52px;
     border-radius: 12px;
-    background-color: #ffffff;
-    padding:0px 10px;
+    background-color: var(--bg-color-secondary);
+    padding:0 10px;
     margin-bottom: 20px;
 }
 
 .addPostFormWrapper input {
     width: 80%;
     height: 90%;
-    border: 0px;
+    border: 0;
     padding-left: 20px;
     outline:none;
+    background-color: var(--bg-color-secondary);
 }
 
 
@@ -41,6 +42,6 @@
     height: 32px;
     border-radius: 8px;
     border: 0;
-    background-color: #edeef0;
+    background-color: var(--bg-color-secondary);
 }
 

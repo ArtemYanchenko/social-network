@@ -23,7 +23,7 @@ export const Users: FC<Props> = ({
             <div>
                 {isFetching ? <Spin indicator={antIcon} className={classes.preloader}/> : null}
                 <Pagination defaultCurrent={1} total={pagesCount} onChange={onChangePage} showSizeChanger={false}
-                            className={classes.pagination}/>
+                            className={classes.pagination} />
             </div>
             <div className={classes.usersBlock}>
                 {users.map(user => {

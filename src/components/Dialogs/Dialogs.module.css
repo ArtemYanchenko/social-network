@@ -1,7 +1,7 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
-    background-color: white;
+    background-color: var(--bg-color-secondary);
     border-radius: 12px;
 }
 
@@ -15,7 +15,7 @@
 
     border-radius: 5px;
     text-align: center;
-    padding: 5px 0px;
+    padding: 5px 0;
 }
 
 .dialogItem a {

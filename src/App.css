@@ -8,10 +8,11 @@
     'nav content news';
     grid-template-rows: 60px 1fr;
     grid-template-columns: 4fr 4fr 4fr;
-    grid-gap: 10px;
-    background-color: #edeef0;
+    /*grid-gap: 10px;*/
+    background-color: var(--bg-color);
     background-size: 300%;
     font-size: 13px;
+    color:var(--text-color)
 }
 
 
