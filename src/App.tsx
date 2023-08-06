@@ -10,6 +10,7 @@ import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
 import PreLoader from './components/common/PreLoader';
 import {Routing} from './components/common/Routing';
+import News from './components/News/News';
 
 class App extends Component<PropsType> {
     componentDidMount() {
@@ -26,7 +27,9 @@ class App extends Component<PropsType> {
                     {this.props.isLoggedIn && <Navbar/>}
                     <div className="app-wrapper-content">
                         {this.props.isLoggedIn ? <Routing/> : <LoginContainer/>}
+
                     </div>
+                <News/>
             </div>
         );
     }

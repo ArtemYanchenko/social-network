@@ -9,15 +9,15 @@ import {
     UsersType
 } from '../../bll/user-reducer';
 import {connect} from 'react-redux';
-import Users from './Users';
+import {Users} from './Users';
 
 class UsersContainer extends React.Component<UsersContainerType> {
     componentDidMount() {
-        this.props.getUsersTC(this.props.pageSize,this.props.currentPage);
+        this.props.getUsersTC(this.props.pageSize, this.props.currentPage);
     }
 
     onChangePage = (page: number) => {
-        this.props.getUsersTC(this.props.pageSize,page)
+        this.props.getUsersTC(this.props.pageSize, page)
     }
 
     render() {
@@ -35,25 +35,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 }
 
-export type UsersContainerType = MapStateToPropsType & MapDispatchToProps
-
-type MapStateToPropsType = {
-    users: UsersType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress:number[]
-}
-
-type MapDispatchToProps = {
-    toggleUsersPage: (currentPage: number) => void
-    setTotalCount: (totalCount: number) => void
-
-    followUserTC: (id: number) => void
-    unfollowUserTC: (id: number) => void
-    getUsersTC:(pageSize: number, currentPage: number) => void
-}
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -74,3 +55,24 @@ export default connect(mapStateToProps, {
     followUserTC,
     unfollowUserTC,
 })(UsersContainer)
+
+//types
+export type UsersContainerType = MapStateToPropsType & MapDispatchToProps
+
+type MapStateToPropsType = {
+    users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: number[]
+}
+
+type MapDispatchToProps = {
+    toggleUsersPage: (currentPage: number) => void
+    setTotalCount: (totalCount: number) => void
+
+    followUserTC: (id: number) => void
+    unfollowUserTC: (id: number) => void
+    getUsersTC: (pageSize: number, currentPage: number) => void
+}

@@ -11,7 +11,7 @@ export const Header: FC<Props> = ({login, photo, isLoggedIn, logoutTC}) => {
     }
 
     const widgetMenu = (
-        <Menu className={classes.menuWrapper}>
+        <Menu className={classes.menuWrapper} >
             <Menu.Item key={1}>
                 {login}
             </Menu.Item>

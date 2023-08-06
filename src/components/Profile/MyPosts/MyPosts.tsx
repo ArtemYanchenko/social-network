@@ -29,7 +29,7 @@ export const MyPosts: FC<MyPostsContainerPropsType> = ({
                 <input placeholder={`What's new?`} value={newPostText}
                        onChange={updatePostTextHandler}
                 />
-                <CustomButton name="add post" callback={addPostHandler}/>
+                <CustomButton name="Add post" callback={addPostHandler}/>
             </div>
 
             <div className={classes.postsWrapper}>
