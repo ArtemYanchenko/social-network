@@ -3,8 +3,9 @@ import classes from './Header.module.css';
 import {Avatar, Dropdown, Menu} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import {CustomButton} from '../common/custom-button/custom-button';
+import {NightModeButton} from '../common/night-mode-button/night-mode-button';
 
-export const Header: FC<Props> = ({login, photo, isLoggedIn, logoutTC}) => {
+export const Header: FC<Props> = ({login, photo, nightMode ,isLoggedIn, logoutTC,setNightMode}) => {
     const onLoginHandler = () => {
         logoutTC()
 
@@ -30,6 +31,7 @@ export const Header: FC<Props> = ({login, photo, isLoggedIn, logoutTC}) => {
                     }
                 </Dropdown>
                 : <Avatar icon={<UserOutlined rev={undefined}/>}/>}
+            <NightModeButton nightMode={nightMode} setNightMode={setNightMode}/>
         </header>
     );
 };
@@ -39,5 +41,7 @@ type Props = {
     login: string | null
     photo: string | null
     isLoggedIn: boolean
+    nightMode:boolean
     logoutTC: () => void
+    setNightMode:(mode:boolean) => void
 }
