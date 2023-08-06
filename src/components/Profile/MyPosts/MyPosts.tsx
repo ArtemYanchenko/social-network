@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {MyPostsContainerPropsType} from './MyPostsContainer';
@@ -7,18 +7,18 @@ import {CustomButton} from '../../common/custom-button/custom-button';
 
 export const MyPosts: FC<MyPostsContainerPropsType> = ({
                                                            addPost,
-                                                           updatePostText,
                                                            postsData,
-                                                           messageForNewPost,
                                                            photo
                                                        }) => {
+    const [newPostText,setNewPostText] = useState<string>('')
 
     const addPostHandler = () => {
-        addPost();
+        addPost(newPostText);
+        setNewPostText('')
     }
 
     const updatePostTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        updatePostText(e.currentTarget.value)
+        setNewPostText(e.currentTarget.value)
     }
 
     const mappedPosts = postsData.map((p) => <Post message={p.message} likeCount={p.likesCount} photo={photo}/>)
@@ -26,7 +26,7 @@ export const MyPosts: FC<MyPostsContainerPropsType> = ({
     return (
         <div className={classes.postsBlock}>
             <div className={classes.addPostFormWrapper}>
-                <input placeholder={`What's new?`} value={messageForNewPost}
+                <input placeholder={`What's new?`} value={newPostText}
                        onChange={updatePostTextHandler}
                 />
                 <CustomButton name="add post" callback={addPostHandler}/>
