@@ -140,7 +140,7 @@ export const getUsersTC = (pageSize: number, currentPage: number) => (dispatch: 
     usersAPI.getUsers(pageSize, currentPage)
         .then(data => {
             dispatch(setUsers(data.items));
-            dispatch(setTotalCount((data.totalCount / 50)));
+            dispatch(setTotalCount((data.totalCount)));
             dispatch(toggleFetching(false));
         })
 }

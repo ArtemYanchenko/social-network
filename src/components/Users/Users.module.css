@@ -64,3 +64,12 @@
     color: grey;
 }
 
+.preloader {
+    position: absolute;
+    top:30%;
+    left:50%;
+}
+
+.pagination{
+    margin-bottom: 20px;
+}

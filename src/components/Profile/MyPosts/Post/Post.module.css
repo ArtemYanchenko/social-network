@@ -6,7 +6,7 @@
     border-radius: 12px;
     background-color: #ffffff;
     padding: 10px;
-
+    transition: all .4s linear;
 }
 
 .item:hover {

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './Users.module.css';
 import {UsersType} from '../../bll/user-reducer';
-import PreLoader from '../common/PreLoader';
+import { LoadingOutlined } from '@ant-design/icons';
 import {NavLink} from 'react-router-dom';
+import {Pagination, Spin} from 'antd';
 
-type PropsType = {
+type Props = {
     users: UsersType[]
     totalUsersCount: number
     pageSize: number
@@ -18,35 +19,24 @@ type PropsType = {
     unfollowUserTC: (id: number) => void
 }
 
-const Users = (props: PropsType) => {
+const Users:FC<Props> = ({...props}) => {
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
+    const antIcon = <LoadingOutlined style={{fontSize: 100}} spin rev={undefined} />;
     return (
         <div className={classes.usersContainer}>
             <div>
-                {props.isFetching ? <PreLoader/> : null}
-                {pages.map(page => {
-                    const toggleUserPageHandler = (page: number) => {
-                        props.toggleUsersPage(page)
-                        props.onChangePage(page)
-                    }
-                    return (
-                        <span className={props.currentPage === page ? classes.selectPage : ''}
-                              onClick={() => toggleUserPageHandler(page)}>{page}</span>)
-                })}
+                {props.isFetching ? <Spin indicator={antIcon} className={classes.preloader} /> : null}
+
+                <Pagination total={pagesCount} onChange={props.onChangePage} showSizeChanger={false} className={classes.pagination}/>
             </div>
             <div className={classes.usersBlock}>
                 {props.users.map(user => {
                     const onClickHandler = () => {
-                        if (!user.followed) {
-                            props.followUserTC(user.id)
-                        } else {
-                            props.unfollowUserTC(user.id)
-                        }
+                        !user.followed ? props.followUserTC(user.id) : props.unfollowUserTC(user.id)
                     }
                     return (
                         <div className={classes.userBlock}>

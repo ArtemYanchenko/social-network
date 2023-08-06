@@ -21,7 +21,7 @@ export const MyPosts: FC<MyPostsContainerPropsType> = ({
         setNewPostText(e.currentTarget.value)
     }
 
-    const mappedPosts = postsData.map((p) => <Post message={p.message} likeCount={p.likesCount} photo={photo}/>)
+    const mappedPosts = postsData.map((p) => <Post key={p.id} message={p.message} likeCount={p.likesCount} photo={photo}/>)
 
     return (
         <div className={classes.postsBlock}>
