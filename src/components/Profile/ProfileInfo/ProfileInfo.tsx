@@ -25,10 +25,7 @@ export const ProfileInfo:FC<Props> = ({profile}) => {
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
-                {/*<a href='#'>Edit profile</a>*/}
                 <CustomButton name='Edit profile'/>
-                <CustomButton name='More'/>
-                {/*<a href='#'>More</a>*/}
             </div>
         </div>
     );

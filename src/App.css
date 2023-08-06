@@ -5,9 +5,9 @@
     height: 100%;
     grid-template-areas:
     'header header header'
-    'nav content content';
+    'nav content news';
     grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 4fr 4fr 4fr;
     grid-gap: 10px;
     background-color: #edeef0;
     background-size: 300%;

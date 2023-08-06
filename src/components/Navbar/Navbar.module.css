@@ -1,7 +1,7 @@
 .nav {
     grid-area: nav;
     padding: 10px;
-    margin-left: 100px;
+    margin-left: 70%;
 }
 
 .nav div {
