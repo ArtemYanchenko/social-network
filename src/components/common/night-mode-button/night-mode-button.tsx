@@ -4,14 +4,15 @@ import style from './night-mode-button.module.css'
 export const NightModeButton: FC<Props> = ({nightMode,setNightMode}) => {
     const switchInput = React.createRef<HTMLInputElement>()
     useEffect(() => {
-        if (!switchInput.current?.checked) {
-            document.documentElement.style.setProperty('--bg-color', '#141414');
-            document.documentElement.style.setProperty('--bg-color-secondary', '#222222');
-            document.documentElement.style.setProperty('--text-color', '#fff');
-        } else {
+        if (switchInput.current?.checked) {
             document.documentElement.style.setProperty('--bg-color', '#edeef0');
             document.documentElement.style.setProperty('--bg-color-secondary', '#FFFFFF');
             document.documentElement.style.setProperty('--text-color', '#161c2d');
+
+        } else {
+            document.documentElement.style.setProperty('--bg-color', '#141414');
+            document.documentElement.style.setProperty('--bg-color-secondary', '#222222');
+            document.documentElement.style.setProperty('--text-color', '#fff');
         }
     }, [nightMode]);
     return (

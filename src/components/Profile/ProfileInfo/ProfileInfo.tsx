@@ -33,10 +33,10 @@ export const ProfileInfo: FC<Props> = ({profile, isOwner, savePhoto}) => {
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
-                {isOwner && <><label htmlFor="mainPhotoInput" className="file-input-label">
+                {isOwner && <><label htmlFor="mainPhotoInput" className={classes.inputFile}>
                     Update photo
                 </label>
-                    <input type="file" id="mainPhotoInput" className={classes.inputFile} onChange={mainPhotoSelected}
+                    <input type="file" id="mainPhotoInput"  onChange={mainPhotoSelected}
                            style={{display: 'none'}}/>
                 </>}
                 {isOwner && <CustomButton name="Edit profile"/>}
