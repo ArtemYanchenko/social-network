@@ -4,10 +4,10 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {UserProfileType} from '../../bll/profile-reducer';
 
-export const Profile:FC<Props> = ({profile}) => {
+export const Profile:FC<Props> = ({profile,isOwner}) => {
     return (
         <div className={classes.profileContent}>
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile} isOwner={isOwner}/>
             <MyPostsContainer/>
         </div>
     );
@@ -16,4 +16,5 @@ export const Profile:FC<Props> = ({profile}) => {
 //types
 type Props = {
     profile:UserProfileType
+    isOwner:boolean
 }

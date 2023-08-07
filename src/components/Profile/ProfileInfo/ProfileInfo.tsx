@@ -6,9 +6,11 @@ import {CustomButton} from '../../common/custom-button/custom-button';
 
 type Props = {
     profile: UserProfileType
+    isOwner:boolean
 }
 
-export const ProfileInfo:FC<Props> = ({profile}) => {
+export const ProfileInfo:FC<Props> = ({profile,isOwner}) => {
+    debugger
     return (
         <div className={classes.profileInfoBlock}>
             {!profile ? <PreLoader/>
@@ -25,7 +27,8 @@ export const ProfileInfo:FC<Props> = ({profile}) => {
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
-                <CustomButton name='Edit profile'/>
+                {isOwner && <input type={'file'}/> }
+                {isOwner && <CustomButton name='Edit profile'/> }
             </div>
         </div>
     );
