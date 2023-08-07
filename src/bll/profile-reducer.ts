@@ -3,17 +3,6 @@ import {Dispatch} from 'redux';
 import {profileAPI} from '../dal/api';
 import {v1} from 'uuid';
 
-export type PostsDataType = {
-    id: string,
-    likesCount: number,
-    message: string
-}
-
-type InitialStateType = {
-    postsData: PostsDataType[]
-    profile: UserProfileType
-}
-
 const initialState = {
     postsData: [
         {
@@ -57,50 +46,66 @@ const initialState = {
             youtube: 'youtube',
         },
         photos: {
-            small: null,
-            large: null,
+            small: '',
+            large: '',
         }
     }
 }
 
-type ActionsTypes =
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof addMessage>
-    | ReturnType<typeof updateMessageText>
-    | ReturnType<typeof setUserProfile>
-
-
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
-
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsDataType = {id: v1(), likesCount: 0, message: action.text};
-            return {...state, postsData: [newPost,...state.postsData]};
+            return {...state, postsData: [newPost, ...state.postsData]};
         case 'SET-USER': {
             return {...state, profile: {...action.profile}}
         }
+        case 'SAVE-PHOTOS-SUCCESS':
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
 }
 
-export const addPostAC = (text:string) => {
-    return {
-        type: 'ADD-POST',
-        text
-    } as const
-}
-
-
+//actions
+export const addPostAC = (text: string) => ({type: 'ADD-POST', text} as const)
 export const setUserProfile = (profile: UserProfileType) => ({type: 'SET-USER', profile} as const)
+export const savePhotoSuccessAC = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
 
-
+//thunks
 export const setUserProfileTC = (id: string) => (dispatch: Dispatch) => {
-    debugger
     profileAPI.getProfilePage(id)
         .then(data => {
             dispatch(setUserProfile(data))
         })
+}
+export const savePhoto = (file: File) => {
+    return async (dispatch: Dispatch) => {
+        let response = await profileAPI.savePhoto(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccessAC(response.data.data.photos))
+        }
+    }
+}
+
+
+//types
+type ActionsTypes =
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof addMessage>
+    | ReturnType<typeof updateMessageText>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof savePhotoSuccessAC>
+
+export type PostsDataType = {
+    id: string,
+    likesCount: number,
+    message: string
+}
+
+type InitialStateType = {
+    postsData: PostsDataType[]
+    profile: UserProfileType
 }
 
 export type UserProfileType = {
@@ -117,8 +122,10 @@ export type UserProfileType = {
         website: string;
         youtube: string;
     };
-    photos: {
-        small: string | null;
-        large: string | null;
-    };
+    photos: PhotosType
+}
+
+export type PhotosType = {
+    small: string;
+    large: string;
 }

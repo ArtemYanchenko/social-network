@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {LoginValues} from '../bll/auth-reducer';
+import {PhotosType} from '../bll/profile-reducer';
+import {ResultCodeForCaptcha, ResultCodesEnum} from '../common';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -28,7 +30,16 @@ export const profileAPI = {
     getProfilePage(id: string) {
         return instance.get(`profile/${id}`)
             .then(res => res.data)
-    }
+    },
+    savePhoto: function (file: File) {
+        const formData = new FormData()
+        formData.append('image', file)
+        return instance.put<ResponseType<{ photos: PhotosType }>>(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
 }
 
 
@@ -47,4 +58,12 @@ export const authAPI = {
         return instance.delete('auth/login')
             .then(res => res.data)
     }
+}
+
+//types
+export type ResponseType<T = {}> = {
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: string[]
+    fieldsErrors: Array<string>
+    data: T
 }

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import classes from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../bll/profile-reducer';
 import PreLoader from '../../common/PreLoader';
@@ -6,11 +6,17 @@ import {CustomButton} from '../../common/custom-button/custom-button';
 
 type Props = {
     profile: UserProfileType
-    isOwner:boolean
+    isOwner: boolean
+    savePhoto: (file: File) => void
 }
 
-export const ProfileInfo:FC<Props> = ({profile,isOwner}) => {
-    debugger
+export const ProfileInfo: FC<Props> = ({profile, isOwner, savePhoto}) => {
+    const mainPhotoSelected = (event: ChangeEvent<HTMLInputElement>) => {
+        debugger
+        if (event.target.files && event.target.files.length) {
+            savePhoto(event.target.files[0])
+        }
+    }
     return (
         <div className={classes.profileInfoBlock}>
             {!profile ? <PreLoader/>
@@ -27,8 +33,13 @@ export const ProfileInfo:FC<Props> = ({profile,isOwner}) => {
                     </div>
                 </div>}
             <div className={classes.buttonBlock}>
-                {isOwner && <input type={'file'}/> }
-                {isOwner && <CustomButton name='Edit profile'/> }
+                {isOwner && <><label htmlFor="mainPhotoInput" className="file-input-label">
+                    Update photo
+                </label>
+                    <input type="file" id="mainPhotoInput" className={classes.inputFile} onChange={mainPhotoSelected}
+                           style={{display: 'none'}}/>
+                </>}
+                {isOwner && <CustomButton name="Edit profile"/>}
             </div>
         </div>
     );

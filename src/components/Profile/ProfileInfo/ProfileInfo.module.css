@@ -31,3 +31,40 @@
 .userName {
     font-weight: 900;
 }
+
+/*.inputFile {*/
+/*    background-color: #dee5eb;*/
+/*    color: #5b90c5;*/
+/*    border: 0 solid;*/
+/*    border-radius: 8px;*/
+/*    font-weight: 600;*/
+/*    font-size: 12px;*/
+/*    line-height: 16px;*/
+/*    padding: 10px;*/
+/*    text-decoration: none;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    display: flex;*/
+/*}*/
+
+/*.inputFile:hover{*/
+/*    background-color: #d7e0f3;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.inputFile:active{*/
+/*    border-color: #b9c9ee;*/
+/*}*/
+
+.inputFile {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #e7e7e7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputFile:hover {
+    background-color: #d4d4d4;
+}

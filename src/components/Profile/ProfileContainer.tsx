@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {setUserProfileTC, UserProfileType} from '../../bll/profile-reducer';
+import {savePhoto, setUserProfileTC, UserProfileType} from '../../bll/profile-reducer';
 import {AppStateType} from '../../bll/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
@@ -26,7 +26,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-        return <Profile profile={this.props.profile} isOwner={!this.props.match.params.id}/>
+        return <Profile profile={this.props.profile} isOwner={!this.props.match.params.id} savePhoto={this.props.savePhoto}/>
     }
 }
 
@@ -39,7 +39,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 const ProfileContainterWithRouter = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, ({setUserProfileTC}))(ProfileContainterWithRouter);
+export default connect(mapStateToProps, ({setUserProfileTC,savePhoto}))(ProfileContainterWithRouter);
 
 //types
 type PathParamsType = {
@@ -53,6 +53,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchPropsType = {
     setUserProfileTC: (id: string) => void
+    savePhoto:(file:File)=>void
 }
 
 type PropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & MapDispatchPropsType
