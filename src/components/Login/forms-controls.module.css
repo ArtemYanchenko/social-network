@@ -1,4 +1,4 @@
-.formControl{
+.formControl input{
 }
 
 .formControl.error input,
@@ -21,8 +21,3 @@
     border: 1px solid #ccc;
     border-radius: 0.2rem;
 }
-
-/*.customInput:focus {*/
-/*    border: 0;*/
-/*    outline: white;*/
-/*}*/

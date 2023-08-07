@@ -13,7 +13,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
                                                                                                      }) => {
     return (
         <form onSubmit={handleSubmit} className={classes.formControl}>
-            <Form.Item className={classes.formLabel}>
+            <div className={classes.formLabel}>
                 <p>
                     To log in get registered <a href={'https://social-network.samuraijs.com/'}
                                                 target={'_blank'} rel="noreferrer">here</a>
@@ -26,7 +26,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
                 <p>
                     Password: free
                 </p>
-            </Form.Item>
+            </div>
             <div className={classes.email}>
                 {createField<LoginFormKeyValuesType>('Email', 'email', [required], Input)}
             </div>

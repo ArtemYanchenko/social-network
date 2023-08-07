@@ -16,7 +16,7 @@ export const NightModeButton: FC<Props> = ({nightMode,setNightMode}) => {
     }, [nightMode]);
     return (
         <label className={style.switch}>
-            <input type="checkbox" ref={switchInput} checked={nightMode} onChange={()=>setNightMode(!nightMode)}/>
+            <input type="checkbox" ref={switchInput} checked={!nightMode} onChange={()=>setNightMode(!nightMode)}/>
             <span className={style.slider}></span>
         </label>
     );

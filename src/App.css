@@ -19,8 +19,7 @@
 .app-wrapper-content {
     padding:15px;
     grid-area: content;
-    /*background-color: white;*/
-    /*border-radius: 12px;*/
+    height: 100vh;
 }
 
 

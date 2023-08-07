@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color:var(--text-color);
 }
 
 .loginForm {
@@ -16,4 +17,8 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.rememberMe{
+    color:var(--text-color);
 }

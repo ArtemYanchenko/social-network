@@ -9,9 +9,7 @@ type PropsType = {
 };
 
 export const FormControl: React.FC<PropsType> = (props) => {
-
     const {meta: {touched, error}, children} = props
-
     const hasError = touched && error;
     return (
         <div className={classes.formControl + ' ' + (hasError ? classes.error : '')} {...props}>
@@ -54,8 +52,9 @@ export function createField<T extends string>(placeholder: string,
                                               props?: { type: string },
                                               text: string = '') {
     return (
-        <div style={{display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center', color: 'black'}}>
+        <div style={{display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center'}}>
             <Field placeholder={placeholder}
+                   className={classes.formControl}
                    name={name}
                    component={component}
                    validate={validators}
