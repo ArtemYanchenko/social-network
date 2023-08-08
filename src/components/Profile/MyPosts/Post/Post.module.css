@@ -26,10 +26,14 @@
 }
 
 .likeWrapper{
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 5px;
     padding: 0 10px;
+}
+
+.likeWrapper:hover{
+    cursor: pointer;
 }
 
 .likeWrapper svg{
