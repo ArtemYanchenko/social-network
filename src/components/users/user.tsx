@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './Users.module.css';
+import classes from './users.module.css';
 import {NavLink} from 'react-router-dom';
 import {UsersType} from '../../bll/user-reducer';
 

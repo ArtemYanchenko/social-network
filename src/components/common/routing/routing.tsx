@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import ProfileContainer from '../../profile/profile-container';
 import DialogsContainer from '../../dialogs/dialogs-container';
-import UsersContainer from '../../Users/UsersContainer';
+import UsersContainer from '../../users/users-container';
 import LoginContainer from '../../login/login-container';
 import {News} from '../../news/news';
 import {Music} from '../../music/music';

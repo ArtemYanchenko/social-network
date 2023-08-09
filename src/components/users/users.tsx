@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './Users.module.css';
+import classes from './users.module.css';
 import {LoadingOutlined} from '@ant-design/icons';
 import {Pagination, Spin} from 'antd';
 import {User} from './user';

@@ -1,32 +1,5 @@
 import {Dispatch} from 'redux';
-import {usersAPI} from '../dal/api';
-
-export type UsersType = {
-    followed: boolean
-    id: number
-    name: string
-    photos: { small: string | null, large: string | null }
-    status: string | null
-    uniqueUrlName: string | null
-}
-
-type ActionsTypes =
-    | FollowUserACType
-    | SetUsersACType
-    | toggleUsersPageAC
-    | SetTotalCountACType
-    | ToggleFetchingACType
-    | ToggleFollowingACType
-
-
-type InitialStateType = {
-    users: UsersType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: number[]
-}
+import {usersAPI} from '../dal/user-api';
 
 const initialState: InitialStateType = {
     users: [],
@@ -72,69 +45,47 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
     }
 }
 
-type FollowUserACType = ReturnType<typeof followUser>
-export const followUser = (id: number, checked: boolean) => {
-    return {
-        type: 'FOLLOW',
-        payload: {
-            id,
-            checked
-        }
-    } as const
-}
 
-type SetUsersACType = ReturnType<typeof setUsers>
-export const setUsers = (users: UsersType[]) => {
-    return {
-        type: 'SET-USERS',
-        payload: {
-            users
-        }
-    } as const
-}
+//actions
+export const followUser = (id: number, checked: boolean) => ({
+    type: 'FOLLOW',
+    payload: {
+        id,
+        checked
+    }
+} as const)
 
-type toggleUsersPageAC = ReturnType<typeof toggleUsersPage>
-export const toggleUsersPage = (currentPage: number) => {
-    return {
-        type: 'TOGGLE-USERS-PAGE',
-        payload: {
-            currentPage
-        }
-    } as const
-}
+export const setUsers = (users: UsersType[]) => ({
+    type: 'SET-USERS',
+    payload: {users}
+} as const)
 
-type SetTotalCountACType = ReturnType<typeof setTotalCount>
-export const setTotalCount = (totalCount: number) => {
-    return {
-        type: 'SET-TOTAL-COUNT',
-        payload: {
-            totalCount
-        }
-    } as const
-}
+export const toggleUsersPage = (currentPage: number) => ({
+    type: 'TOGGLE-USERS-PAGE',
+    payload: {currentPage}
+} as const)
+
+export const setTotalCount = (totalCount: number) => ({
+    type: 'SET-TOTAL-COUNT',
+    payload: {totalCount}
+} as const)
 
 
-type ToggleFetchingACType = ReturnType<typeof toggleFetching>
-export const toggleFetching = (checked: boolean) => {
-    return {
-        type: 'TOGGLE-FETCHING',
-        payload: {
-            checked
-        }
-    } as const
-}
+export const toggleFetching = (checked: boolean) => ({
+    type: 'TOGGLE-FETCHING',
+    payload: {checked}
+} as const)
 
-type ToggleFollowingACType = ReturnType<typeof toggleFollowing>
-export const toggleFollowing = (id: number, isFetching: boolean) => {
-    return {
-        type: 'TOGGLE-FOLLOWING',
-        payload: {
-            id,
-            isFetching
-        }
-    } as const
-}
 
+export const toggleFollowing = (id: number, isFetching: boolean) => ({
+    type: 'TOGGLE-FOLLOWING',
+    payload: {
+        id,
+        isFetching
+    }
+} as const)
+
+//thunks
 export const getUsersTC = (pageSize: number, currentPage: number) => (dispatch: Dispatch) => {
     dispatch(toggleFetching(true));
     usersAPI.getUsers(pageSize, currentPage)
@@ -145,7 +96,7 @@ export const getUsersTC = (pageSize: number, currentPage: number) => (dispatch: 
         })
 }
 
-export const followUserTC = (id:number) => (dispatch:Dispatch) => {
+export const followUserTC = (id: number) => (dispatch: Dispatch) => {
     dispatch(toggleFollowing(id, true));
     usersAPI.followUser(id)
         .then(data => {
@@ -156,7 +107,7 @@ export const followUserTC = (id:number) => (dispatch:Dispatch) => {
         })
 }
 
-export const unfollowUserTC = (id:number) => (dispatch:Dispatch) => {
+export const unfollowUserTC = (id: number) => (dispatch: Dispatch) => {
     dispatch(toggleFollowing(id, true));
     usersAPI.unfollowUser(id)
         .then(data => {
@@ -165,4 +116,31 @@ export const unfollowUserTC = (id:number) => (dispatch:Dispatch) => {
             }
             dispatch(toggleFollowing(id, false))
         })
+}
+
+//types
+export type UsersType = {
+    followed: boolean
+    id: number
+    name: string
+    photos: { small: string | null, large: string | null }
+    status: string | null
+    uniqueUrlName: string | null
+}
+type ActionsTypes =
+    | ReturnType<typeof followUser>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof toggleUsersPage>
+    | ReturnType<typeof setTotalCount>
+    | ReturnType<typeof toggleFetching>
+    | ReturnType<typeof toggleFollowing>
+
+
+type InitialStateType = {
+    users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: number[]
 }

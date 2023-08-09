@@ -9,7 +9,7 @@ import {
     UsersType
 } from '../../bll/user-reducer';
 import {connect} from 'react-redux';
-import {Users} from './Users';
+import {Users} from './users';
 
 class UsersContainer extends React.Component<UsersContainerType> {
     componentDidMount() {
