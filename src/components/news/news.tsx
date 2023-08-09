@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './News.module.css';
+import classes from './news.module.css';
 
- const News = () => {
+export const News = () => {
     return (
         <div className={classes.newWrapper}>
+            News
         </div>
     );
 };
 
-export default News;

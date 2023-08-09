@@ -1,5 +1,5 @@
 import React from 'react';
-import {Profile} from './Profile';
+import {Profile} from './profile';
 import {connect} from 'react-redux';
 import {savePhoto, setUserProfileTC, UserProfileType} from '../../bll/profile-reducer';
 import {AppStateType} from '../../bll/redux-store';

@@ -1,6 +1,6 @@
 import React, {Component, ComponentType} from 'react';
 import './App.css';
-import {Navbar} from './components/Navbar/navbar';
+import {Navbar} from './components/navbar/navbar';
 import {withRouter} from 'react-router-dom';
 import HeaderContainer from './components/header/header-container';
 import LoginContainer from './components/login/login-container';
@@ -10,7 +10,7 @@ import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
 import {Preloader} from './components/common/preloader/preloader';
 import {Routing} from './components/common/routing/routing';
-import News from './components/News/News';
+import {News} from './components/news/news';
 
 class App extends Component<PropsType> {
     componentDidMount() {

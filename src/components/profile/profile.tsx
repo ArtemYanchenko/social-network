@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import classes from './Profile.module.css';
-import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {MyPostsContainer} from './MyPosts/MyPostsContainer';
+import classes from './profile.module.css';
 import {UserProfileType} from '../../bll/profile-reducer';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {MyPostsContainer} from './my-posts/my-posts-container';
 
 export const Profile:FC<Props> = ({profile,isOwner,savePhoto}) => {
     return (

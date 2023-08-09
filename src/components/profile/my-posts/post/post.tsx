@@ -1,13 +1,7 @@
 import React, {FC, useState} from 'react';
-import style from './Post.module.css';
+import style from './post.module.css';
 import {SvgLike} from '../../../../assets/icons/svg-like';
 import {SvgNotLike} from '../../../../assets/icons/svg-not-like';
-
-type Props = {
-    message: string
-    likeCount: number
-    photo: string | null
-}
 
 export const Post: FC<Props> = ({message, likeCount, photo}) => {
     const [likes, setLikes] = useState(likeCount);
@@ -33,3 +27,10 @@ export const Post: FC<Props> = ({message, likeCount, photo}) => {
         </div>
     );
 };
+
+//types
+type Props = {
+    message: string
+    likeCount: number
+    photo: string | null
+}

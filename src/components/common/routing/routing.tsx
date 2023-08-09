@@ -1,11 +1,11 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import ProfileContainer from '../../Profile/ProfileContainer';
+import ProfileContainer from '../../profile/profile-container';
 import DialogsContainer from '../../dialogs/dialogs-container';
 import UsersContainer from '../../Users/UsersContainer';
-import News from '../../News/News';
-import Music from '../../music/music';
 import LoginContainer from '../../login/login-container';
+import {News} from '../../news/news';
+import {Music} from '../../music/music';
 
 export const Routing = () => {
     return (

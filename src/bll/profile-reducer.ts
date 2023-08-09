@@ -28,7 +28,7 @@ const initialState = {
         {
             id: v1(),
             likesCount: 54,
-            message: 'Post functionality is still under development. Some features may be unavailable. An online platform that is used for communication, dating, creating social relationships between people who have similar interests or offline connections, as well as for entertainment (music, movies) and work.'
+            message: 'post functionality is still under development. Some features may be unavailable. An online platform that is used for communication, dating, creating social relationships between people who have similar interests or offline connections, as well as for entertainment (music, movies) and work.'
         },
     ],
     profile: {
