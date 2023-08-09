@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './forms-controls.module.css'
 import {Field, WrappedFieldMetaProps, WrappedFieldProps} from 'redux-form';
-import {FieldValidatorType} from '../../utils/validator';
+import {FieldValidatorType} from '../../../utils/validator';
 import {Checkbox} from 'antd';
 
 type PropsType = {

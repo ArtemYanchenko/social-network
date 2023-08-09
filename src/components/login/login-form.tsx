@@ -1,9 +1,8 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import {required} from '../../utils/validator';
-import classes from './Login.module.css'
-import {CheckboxWrapper, createField, Input} from './forms-controls';
-import { Form} from 'antd';
+import classes from './login.module.css'
+import {CheckboxWrapper, createField, Input} from '../common/forms-controls/forms-controls';
 import {CustomButton} from '../common/custom-button/custom-button';
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
@@ -39,7 +38,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
             {captcha && <img className={classes.captcha} src={captcha} alt={'captcha'}/>}
             {captcha && createField<LoginFormKeyValuesType>('Symbols from image', 'captcha', [required], Input)}
             {error && <div className={classes.formSummaryError}>{error}</div>}
-            <CustomButton name='Login'/>
+            <CustomButton name="Login"/>
         </form>
     );
 };

@@ -1,9 +1,9 @@
 import React, {Component, ComponentType} from 'react';
 import './App.css';
-import {Navbar} from './components/Navbar/Navbar';
+import {Navbar} from './components/Navbar/navbar';
 import {withRouter} from 'react-router-dom';
-import HeaderContainer from './components/Header/HeaderContainer';
-import LoginContainer from './components/Login/LoginContainer';
+import HeaderContainer from './components/header/header-container';
+import LoginContainer from './components/login/login-container';
 import {connect} from 'react-redux';
 import {AppStateType} from './bll/redux-store';
 import {compose} from 'redux';

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './Header.module.css';
+import classes from './header.module.css';
 import {Avatar, Dropdown, Menu} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import {CustomButton} from '../common/custom-button/custom-button';

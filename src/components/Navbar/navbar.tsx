@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Navbar.module.css';
+import classes from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {SvgProfile} from '../../assets/icons/svg-profile';
 import {SvgDialogs} from '../../assets/icons/svg-dialogs';

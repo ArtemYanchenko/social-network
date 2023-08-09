@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {authTC, logoutTC} from '../../bll/auth-reducer';
 import {AppStateType} from '../../bll/redux-store';
-import {Header} from './Header';
+import {Header} from './header';
 import {setNightMode} from '../../bll/app-reducer';
 
 class HeaderContainer extends React.Component<PropsType> {

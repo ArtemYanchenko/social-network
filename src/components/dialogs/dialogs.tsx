@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
 import classes from './dialogs.module.css';
-import {DialogItem} from './DialogItem/DialogItem';
-import {Message} from './Message/Message';
+import {DialogItem} from './dialog-item/dialog-item';
+import {Message} from './message/message';
 import {DialogsContainerType} from './dialogs-container';
 
 
