@@ -1,6 +1,6 @@
 import React from 'react';
 import {addMessage, DialogsPageType, updateMessageText} from '../../bll/dialogs-reducer';
-import {Dialogs} from './Dialogs';
+import {Dialogs} from './dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../bll/redux-store';
 

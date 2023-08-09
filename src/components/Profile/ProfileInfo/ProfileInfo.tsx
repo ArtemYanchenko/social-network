@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
 import classes from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../bll/profile-reducer';
-import PreLoader from '../../common/PreLoader';
+import {Preloader} from '../../common/preloader/preloader';
 import {CustomButton} from '../../common/custom-button/custom-button';
 
 type Props = {
@@ -19,7 +19,7 @@ export const ProfileInfo: FC<Props> = ({profile, isOwner, savePhoto}) => {
     }
     return (
         <div className={classes.profileInfoBlock}>
-            {!profile ? <PreLoader/>
+            {!profile ? <Preloader/>
                 : <div className={classes.descriptionBlock}>
                     <img className={classes.mainImg}
                          alt={'mainPhoto'}

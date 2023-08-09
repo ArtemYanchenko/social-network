@@ -1,8 +1,8 @@
 import React, {ChangeEvent, FC} from 'react';
-import classes from './Dialogs.module.css';
+import classes from './dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogsContainerType} from './DialogsContainer';
+import {DialogsContainerType} from './dialogs-container';
 
 
 export const Dialogs:FC<DialogsContainerType> = ({dialogsPage,addMessage,updateMessageText}) => {

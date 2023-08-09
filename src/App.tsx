@@ -8,8 +8,8 @@ import {connect} from 'react-redux';
 import {AppStateType} from './bll/redux-store';
 import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
-import PreLoader from './components/common/PreLoader';
-import {Routing} from './components/common/Routing';
+import {Preloader} from './components/common/preloader/preloader';
+import {Routing} from './components/common/routing/routing';
 import News from './components/News/News';
 
 class App extends Component<PropsType> {
@@ -19,7 +19,7 @@ class App extends Component<PropsType> {
 
     render() {
         if (!this.props.initialized) {
-            return <PreLoader/>
+            return <Preloader/>
         }
         return (
             <div className="App">

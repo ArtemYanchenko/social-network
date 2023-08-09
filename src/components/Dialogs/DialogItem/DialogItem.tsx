@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './../Dialogs.module.css';
+import classes from '../dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 
 export const DialogItem:FC<Props> = ({id,img}) => {

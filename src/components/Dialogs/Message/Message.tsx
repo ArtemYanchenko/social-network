@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './../Dialogs.module.css';
+import classes from '../dialogs.module.css';
 
 export const Message: FC<Props> = ({message}) => {
     return (
