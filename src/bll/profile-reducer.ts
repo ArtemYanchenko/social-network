@@ -1,7 +1,7 @@
 import {addMessage, updateMessageText} from './dialogs-reducer';
 import {Dispatch} from 'redux';
-import {profileAPI} from '../dal/api';
 import {v1} from 'uuid';
+import {profileAPI} from '../dal/profile-api';
 
 const initialState = {
     postsData: [
@@ -70,7 +70,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 //actions
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text} as const)
 export const setUserProfile = (profile: UserProfileType) => ({type: 'SET-USER', profile} as const)
-export const savePhotoSuccessAC = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
+export const savePhotoSuccessAC = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos} as const)
 
 //thunks
 export const setUserProfileTC = (id: string) => (dispatch: Dispatch) => {
