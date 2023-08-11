@@ -1,4 +1,4 @@
-.App {
+.app {
     margin: 0 auto;
     display: grid;
     width: 100%;
@@ -8,7 +8,6 @@
     'nav content news';
     grid-template-rows: 60px 1fr;
     grid-template-columns: 4fr 4fr 4fr;
-    /*grid-gap: 10px;*/
     background-color: var(--bg-color);
     background-size: 300%;
     font-size: 13px;
@@ -16,7 +15,7 @@
 }
 
 
-.app-wrapper-content {
+.appWrapperContent {
     padding:15px;
     grid-area: content;
     height: 100vh;

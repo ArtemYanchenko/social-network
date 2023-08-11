@@ -1,5 +1,5 @@
 import React, {Component, ComponentType} from 'react';
-import './App.css';
+import './app.module.css';
 import {Navbar} from './components/navbar/navbar';
 import {withRouter} from 'react-router-dom';
 import HeaderContainer from './components/header/header-container';
@@ -8,9 +8,10 @@ import {connect} from 'react-redux';
 import {AppStateType} from './bll/redux-store';
 import {compose} from 'redux';
 import {initializeApp} from './bll/app-reducer';
-import {Preloader} from './components/common/preloader/preloader';
 import {Routing} from './components/common/routing/routing';
 import {News} from './components/news/news';
+import style from './app.module.css'
+
 
 class App extends Component<PropsType> {
     componentDidMount() {
@@ -18,17 +19,17 @@ class App extends Component<PropsType> {
     }
 
     render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
+        // if (!this.props.initialized) {
+        //     return <Preloader/>
+        // }
         return (
-            <div className="App">
-                    <HeaderContainer/>
-                    {this.props.isLoggedIn && <Navbar/>}
-                    <div className="app-wrapper-content">
-                        {this.props.isLoggedIn ? <Routing/> : <LoginContainer/>}
+            <div className={style.app}>
+                <HeaderContainer/>
+                {!this.props.isLoggedIn && <Navbar/>} {/* DELETE ! */}
+                <div className={style.appWrapperContent}>
+                    {!this.props.isLoggedIn ? <Routing/> : <LoginContainer/>} {/* DELETE ! */}
 
-                    </div>
+                </div>
                 <News/>
             </div>
         );
