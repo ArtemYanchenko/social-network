@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import classes from '../dialogs.module.css';
+import s from '../dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 
 export const DialogItem:FC<Props> = ({id,img}) => {
     return (
-        <div className={classes.dialogItem}>
+        <div className={s.dialogItem}>
             <NavLink to={'/dialogs/' + id}>
                 <img src={img} alt=""/>
             </NavLink>

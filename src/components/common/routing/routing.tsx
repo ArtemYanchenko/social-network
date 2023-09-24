@@ -11,8 +11,8 @@ import {Settings} from '../../settings/settings';
 export const Routing = () => {
     return (
         <Switch>
-            <Route exact path={`/`} component={ProfileContainer}/>
             <Route path={`/profile/:id?`} component={ProfileContainer}/>
+            <Route exact path={`/`} component={ProfileContainer}/>
             <Route path={'/dialogs'} component={DialogsContainer}/>
             <Route path={'/users'} component={UsersContainer}/>
             <Route path={'/news'} component={News}/>

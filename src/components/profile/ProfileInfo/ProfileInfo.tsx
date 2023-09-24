@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from 'react';
-import classes from './ProfileInfo.module.css';
+import s from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../bll/profile-reducer';
 import {Preloader} from '../../common/preloader/preloader';
 import {CustomButton} from '../../common/custom-button/custom-button';
@@ -17,22 +17,22 @@ export const ProfileInfo: FC<Props> = ({profile, isOwner, savePhoto}) => {
         }
     }
     return (
-        <div className={classes.profileInfoBlock}>
+        <div className={s.profileInfoBlock}>
             {!profile ? <Preloader/>
-                : <div className={classes.descriptionBlock}>
-                    <img className={classes.mainImg}
+                : <div className={s.descriptionBlock}>
+                    <img className={s.mainImg}
                          alt={'mainPhoto'}
                          src={profile.photos.large !== null
                              ? profile.photos.large
                              : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png'}
                     />
                     <div>
-                        <p className={classes.userName}>{profile.fullName}</p>
+                        <p className={s.userName}>{profile.fullName}</p>
                         <p>{profile.contacts.vk}</p>
                     </div>
                 </div>}
-            <div className={classes.buttonBlock}>
-                {isOwner && <><label htmlFor="mainPhotoInput" className={classes.inputFile}>
+            <div className={s.buttonBlock}>
+                {isOwner && <><label htmlFor="mainPhotoInput" className={s.inputFile}>
                     Update photo
                 </label>
                     <input type="file" id="mainPhotoInput"  onChange={mainPhotoSelected}

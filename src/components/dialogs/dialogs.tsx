@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from 'react';
-import classes from './dialogs.module.css';
+import s from './dialogs.module.css';
 import {DialogItem} from './dialog-item/dialog-item';
 import {Message} from './message/message';
 import {DialogsContainerType} from './dialogs-container';
@@ -18,11 +18,11 @@ export const Dialogs:FC<DialogsContainerType> = ({dialogsPage,addMessage,updateM
         updateMessageText(e.currentTarget.value)
     }
     return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialog}>
+        <div className={s.dialogs}>
+            <div className={s.dialog}>
                 {mappedDialogs}
             </div>
-            <div className={classes.messages}>
+            <div className={s.messages}>
                 {mappedMessages}
                 <input type="text" value={dialogsPage.textMessage} onChange={updateMessageTextHandler}/>
                 <button onClick={sendMessageHandler}>+</button>

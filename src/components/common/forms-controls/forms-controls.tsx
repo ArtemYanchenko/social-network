@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './forms-controls.module.css'
+import s from './forms-controls.module.css'
 import {Field, WrappedFieldMetaProps, WrappedFieldProps} from 'redux-form';
 import {FieldValidatorType} from '../../../utils/validator';
 import {Checkbox} from 'antd';
@@ -12,7 +12,7 @@ export const FormControl: React.FC<PropsType> = (props) => {
     const {meta: {touched, error}, children} = props
     const hasError = touched && error;
     return (
-        <div className={classes.formControl + ' ' + (hasError ? classes.error : '')} {...props}>
+        <div className={s.formControl + ' ' + (hasError ? s.error : '')} {...props}>
             <div>{children}</div>
             {hasError && <span>{error}</span>}
         </div>
@@ -23,7 +23,7 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props;
     return (
         <FormControl {...props}>
-            <input {...input} {...restProps} className={classes.customInput} />
+            <input {...input} {...restProps} className={s.customInput} />
         </FormControl>
     );
 };
@@ -54,7 +54,7 @@ export function createField<T extends string>(placeholder: string,
     return (
         <div style={{display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center'}}>
             <Field placeholder={placeholder}
-                   className={classes.formControl}
+                   className={s.formControl}
                    name={name}
                    component={component}
                    validate={validators}

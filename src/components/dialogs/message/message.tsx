@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import classes from '../dialogs.module.css';
+import s from '../dialogs.module.css';
 
 export const Message: FC<Props> = ({message}) => {
     return (
-        <div className={classes.message}>
+        <div className={s.message}>
             {message}
         </div>
     );

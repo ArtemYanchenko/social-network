@@ -1,7 +1,7 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import {required} from '../../utils/validator';
-import classes from './login.module.css'
+import s from './login.module.css'
 import {CheckboxWrapper, createField, Input} from '../common/forms-controls/forms-controls';
 import {CustomButton} from '../common/custom-button/custom-button';
 
@@ -11,8 +11,8 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
                                                                                                          captcha
                                                                                                      }) => {
     return (
-        <form onSubmit={handleSubmit} className={classes.formControl}>
-            <div className={classes.formLabel}>
+        <form onSubmit={handleSubmit} className={s.formControl}>
+            <div className={s.formLabel}>
                 <p>
                     To log in get registered <a href={'https://social-network.samuraijs.com/'}
                                                 target={'_blank'} rel="noreferrer">here</a>
@@ -26,18 +26,18 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
                     Password: free
                 </p>
             </div>
-            <div className={classes.email}>
-                {createField<LoginFormKeyValuesType>('Email', 'email', [required], Input)}
+            <div className={s.email}>
+                {createField<LoginFormKeyValuesType>('Email', 'email',[required], Input)}
             </div>
-            <div className={classes.password}>
+            <div className={s.password}>
                 {createField<LoginFormKeyValuesType>('Password', 'password', [required], Input, {type: 'password'})}
             </div>
-            <div className={classes.rememberMe}>
+            <div className={s.rememberMe}>
                 {createField<LoginFormKeyValuesType>('', 'rememberMe', [], CheckboxWrapper, {type: 'checkbox'}, 'remember me')}
             </div>
-            {captcha && <img className={classes.captcha} src={captcha} alt={'captcha'}/>}
+            {captcha && <img className={s.captcha} src={captcha} alt={'captcha'}/>}
             {captcha && createField<LoginFormKeyValuesType>('Symbols from image', 'captcha', [required], Input)}
-            {error && <div className={classes.formSummaryError}>{error}</div>}
+            {error && <div className={s.formSummaryError}>{error}</div>}
             <CustomButton name="Login"/>
         </form>
     );

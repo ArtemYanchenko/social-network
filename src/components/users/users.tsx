@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './users.module.css';
+import s from './users.module.css';
 import {LoadingOutlined} from '@ant-design/icons';
 import {Pagination, Spin} from 'antd';
 import {User} from './user';
@@ -19,13 +19,13 @@ export const Users: FC<Props> = ({
 
     const antIcon = <LoadingOutlined style={{fontSize: 100}} spin rev={undefined}/>;
     return (
-        <div className={classes.usersContainer}>
+        <div className={s.usersContainer}>
             <div>
-                {isFetching ? <Spin indicator={antIcon} className={classes.preloader}/> : null}
+                {isFetching ? <Spin indicator={antIcon} className={s.preloader}/> : null}
                 <Pagination defaultCurrent={1} total={pagesCount} onChange={onChangePage} showSizeChanger={false}
-                            className={classes.pagination} />
+                            className={s.pagination} />
             </div>
-            <div className={classes.usersBlock}>
+            <div className={s.usersBlock}>
                 {users.map(user => {
                     const onClickHandler = () => {
                         !user.followed ? followUserTC(user.id) : unfollowUserTC(user.id)

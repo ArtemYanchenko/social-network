@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './header.module.css';
+import s from './header.module.css';
 import {Avatar, Dropdown, Menu} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import {CustomButton} from '../common/custom-button/custom-button';
@@ -12,7 +12,7 @@ export const Header: FC<Props> = ({login, photo, nightMode ,isLoggedIn, logoutTC
     }
 
     const widgetMenu = (
-        <Menu className={classes.menuWrapper} >
+        <Menu className={s.menuWrapper} >
             <Menu.Item key={1}>
                 {login}
             </Menu.Item>
@@ -22,7 +22,7 @@ export const Header: FC<Props> = ({login, photo, nightMode ,isLoggedIn, logoutTC
         </Menu>
     );
     return (
-        <header className={classes.header}>
+        <header className={s.header}>
             <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/124/124019.png" alt="logo"/></a>
             <input type="text" placeholder={'Search'}/>
             {isLoggedIn ? <Dropdown overlay={widgetMenu}>

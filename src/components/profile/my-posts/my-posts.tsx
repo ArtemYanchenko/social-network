@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, useState} from 'react';
-import classes from './my-posts.module.css';
+import s from './my-posts.module.css';
 import {Post} from './post/post';
 import {MyPostsContainerPropsType} from './my-posts-container';
 import {CustomButton} from '../../common/custom-button/custom-button';
@@ -25,14 +25,14 @@ export const MyPosts: FC<MyPostsContainerPropsType> = ({
                                                    photo={photo}/>)
 
     return (
-        <div className={classes.postsBlock}>
-            <div className={classes.addPostFormWrapper}>
+        <div className={s.postsBlock}>
+            <div className={s.addPostFormWrapper}>
                 <input placeholder={`What's new?`} value={newPostText}
                        onChange={updatePostTextHandler}
                 />
                 <CustomButton name="Add post" callback={addPostHandler}/>
             </div>
-            <div className={classes.postsWrapper}>
+            <div className={s.postsWrapper}>
                 {mappedPosts}
             </div>
         </div>
