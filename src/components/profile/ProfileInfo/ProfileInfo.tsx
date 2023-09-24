@@ -12,7 +12,6 @@ type Props = {
 
 export const ProfileInfo: FC<Props> = ({profile, isOwner, savePhoto}) => {
     const mainPhotoSelected = (event: ChangeEvent<HTMLInputElement>) => {
-        debugger
         if (event.target.files && event.target.files.length) {
             savePhoto(event.target.files[0])
         }

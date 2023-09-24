@@ -11,6 +11,7 @@ import {initializeApp} from './bll/app-reducer';
 import {Routing} from './components/common/routing/routing';
 import {News} from './components/news/news';
 import style from './app.module.css'
+import {Preloader} from './components/common/preloader/preloader';
 
 
 class App extends Component<PropsType> {
@@ -19,18 +20,16 @@ class App extends Component<PropsType> {
     }
 
     render() {
-        // if (!this.props.initialized) {
-        //     return <Preloader/>
-        // }
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
         return (
             <div className={style.app}>
                 <HeaderContainer/>
-                {!this.props.isLoggedIn && <Navbar/>} {/* DELETE ! */}
+                {this.props.isLoggedIn && <Navbar/>}
                 <div className={style.appWrapperContent}>
-                    {!this.props.isLoggedIn ? <Routing/> : <LoginContainer/>} {/* DELETE ! */}
-
+                    {this.props.isLoggedIn ? <Routing/> : <LoginContainer/>}
                 </div>
-                <News/>
             </div>
         );
     }

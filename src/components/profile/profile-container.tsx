@@ -6,7 +6,6 @@ import {AppStateType} from '../../bll/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 class ProfileContainer extends React.Component<PropsType> {
-    // id = this.props.match.params.id;
     refreshProfile() {
         let id = this.props.match.params.id;
         if (!id) {
@@ -51,6 +50,7 @@ type MapStateToPropsType = {
     isLoggedIn: boolean
     id: number | null
 }
+
 type MapDispatchPropsType = {
     setUserProfileTC: (id: string) => void
     savePhoto:(file:File)=>void

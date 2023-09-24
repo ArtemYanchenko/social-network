@@ -6,6 +6,7 @@ import UsersContainer from '../../users/users-container';
 import LoginContainer from '../../login/login-container';
 import {News} from '../../news/news';
 import {Music} from '../../music/music';
+import {Settings} from '../../settings/settings';
 
 export const Routing = () => {
     return (
@@ -16,6 +17,7 @@ export const Routing = () => {
             <Route path={'/users'} component={UsersContainer}/>
             <Route path={'/news'} component={News}/>
             <Route path={'/music'} component={Music}/>
+            <Route path={'/settings'} component={Settings}/>
             <Route path={'/login'} component={LoginContainer}/>
         </Switch>
     );

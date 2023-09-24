@@ -82,7 +82,7 @@ export const logoutTC = () => (dispatch: AppDispatch) => {
         })
 }
 
-const getPhotoTC = (id: string) => (dispatch: AppDispatch) => {
+const getPhotoTC = (id: string ) => (dispatch: AppDispatch) => {
     profileAPI.getProfilePage(id).then(data => {
             dispatch(setUserPhoto(data.photos.large))
         }

@@ -3,7 +3,6 @@ import {instance} from './api';
 
 export const authAPI = {
     authMe() {
-        debugger
         return instance.get('auth/me')
             .then(res => res.data)
 

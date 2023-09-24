@@ -2,7 +2,6 @@
     grid-area: nav;
     padding: 10px;
     margin-left: 70%;
-    height: 100vh;
 }
 
 .nav div {
@@ -13,8 +12,6 @@
 .nav a {
     text-decoration: none;
     color: var(--text-color);
-
-    /*margin-bottom: 30px;*/
 }
 
 .navLink {
@@ -31,11 +28,6 @@
 
 .navLink svg {
     margin-right: 10px;
-
-}
-
-.navLink a {
-
 }
 
 .navLink:hover {
