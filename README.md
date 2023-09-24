@@ -1,4 +1,4 @@
-# Analog social network VK - Task tracker 
+# Analog social network VK
 
 Stack: Typescript | ClassComponent | FC | React | Redux | Redux Form | Axios | Reselect | AntD
 
